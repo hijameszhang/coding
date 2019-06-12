@@ -1,0 +1,12 @@
+{
+  "name": "coding",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": "https://github.com/hijameszhang/coding.git",
+  "author": "jameszhang <hellojameszhang@163.com>",
+  "license": "MIT"
+}
