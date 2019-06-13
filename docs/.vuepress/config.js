@@ -6,7 +6,7 @@ var excluded = ['.vuepress']
 module.exports = {
   title: 'Web Developer',  // 设置网站标题
   description : 'Web developer[james zhang]',
-  base : '/',
+  base : '/coding/',
   themeConfig : {
     header: {
       background: {
