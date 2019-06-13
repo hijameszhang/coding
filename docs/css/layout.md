@@ -16,7 +16,20 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-59dddae4bd9d8d04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .child{
+    display: inline-block;
+  }
+  .parent{
+    text-align: center;
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -34,8 +47,18 @@
 *   用法：对子框设置display:table，再设置margin:0 auto。
 
 ##### 代码实例
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-e48d1afc0bf31097.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<style>
+  .child{
+    display: table;
+    margin: 0 auto;
+  }
+</style>
+```
 
 
 ##### 优缺点：
@@ -54,7 +77,22 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-65900396b86366af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    position: relative;
+  }
+  .child{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -73,7 +111,20 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-e02202f3a7d2ad94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    display: flex;;
+  }
+  .child{
+    margin: 0 auto;
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -89,8 +140,18 @@
 *   用法：先将父框设置为display:flex，再设置justify-content:center。
 
 ##### 代码实例
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-f4f95d1d23cca2a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<style>
+  .parent{
+    display: flex;;
+    justify-content: center;
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -111,7 +172,18 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-576548c2f4667158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    display: table-cell;
+    vertical-align: middle;
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -128,7 +200,22 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-54942f05495f31f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    display: relative;
+  }
+  .child {
+    position: absolate;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -147,7 +234,18 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-195644a95dd907b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    display: flex;;
+    align-items: center;
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -168,7 +266,23 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-9e3fe89a8fdcf422.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    position: relative;
+  }
+  .child{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: tranplate(-50%, -50%);
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -186,8 +300,22 @@
 *   见水平居中的1）和垂直居中的1）。
 
 ##### 代码实例
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-bf216820a06139cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<style>
+  .parent{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .child{
+    display: inline-block;
+  }
+</style>
+```
 
 
 ##### 优缺点
@@ -204,7 +332,19 @@
 
 ##### 代码实例
 
-![image.png](https://upload-images.jianshu.io/upload_images/9890665-ece839a0de38babe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```html
+<div class="parent">
+  <div class="child">demo</div>
+</div>
+
+<style>
+  .parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+```
 
 
 ##### 优缺点
