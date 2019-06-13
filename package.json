@@ -4,7 +4,8 @@
   "main": "",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "deploy": "yarn build && ./deploy.bat"
   },
   "repository": "https://github.com/hijameszhang/coding.git",
   "author": "jameszhang <hellojameszhang@163.com>",
