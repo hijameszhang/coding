@@ -47,6 +47,10 @@ module.exports = {
             }
           ]
         },
+        {
+          text: 'Github',
+          link: 'https://github.com/hijameszhang/coding'
+        }
     ],
     sidebar: {
       '/css/': [
