@@ -1,6 +1,8 @@
-# github
+# github使用小技巧
 
-## 出错log
+## 1. 多个github帐号, 推送出错
+
+### 出错log
 ```
 E:\github\coding>git push --set-upstream origin master
 ERROR: Permission to hijameszhang/coding.git denied to jameszhang2020.
@@ -9,7 +11,7 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
 ```
-## 原因
+### 原因
 本机保存有多个github账号时，每个账号需要对应不同的ssh public key.
 ```
 James@James-PC MINGW64 ~/.ssh
@@ -17,8 +19,8 @@ $ ls *.pub
 github.pub  hellojameszhang.pub  id_rsa.pub
 
 ```
-## 解决办法
-### 在~/.ssh目录下添加config配置文件
+### 解决办法
+#### 在~/.ssh目录下添加config配置文件
 ```
 > cd ~
 > cd .ssh
@@ -32,13 +34,13 @@ User git
 IdentityFile ~/.ssh/hellojameszhang
 ```
 
-### 重新添加remote仓库
+#### 重新添加remote仓库
 ::: tip 注意
 远端仓库的原始地址: git@github.com:hijameszhang/coding.git
 修改为: git@hellojameszhang:hijameszhang/coding.git
 ::: 
 
-```
+``` 
 E:\github\coding>git remote rm origin
 
 E:\github\coding>git remote add origin git@hellojameszhang:hijameszhang/coding.git

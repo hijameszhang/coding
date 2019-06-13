@@ -5,7 +5,7 @@ var excluded = ['.vuepress']
 
 module.exports = {
   title: 'Web Developer',  // 设置网站标题
-  description : 'Web developer[james zhang]',
+  description : 'Web developer',
   base : '/coding/',
   themeConfig : {
     header: {
@@ -20,25 +20,33 @@ module.exports = {
 
     nav : [
         { 
-          text: 'CSS', 
+          text: 'Web', 
           link: '/css/',
-          // items: [
-          //   {
-          //     text: 'CSS基础',
-          //     link: '/css/'
-          //   },
-          //   {
-          //     text: 'CSS进阶',
-          //     link: '/css/profess/'
-          //   },
-          //   {
-          //     text: 'Hello',
-          //     link: '/demo/'
-          //   }
-          // ]
+          items: [
+            {
+              text: 'CSS',
+              link: '/css/'
+            },
+            {
+              text: 'HTML',
+              link: '/html/'
+            },
+            {
+              text: 'JavaScript',
+              link: '/js/'
+            }
+          ]
         },
-        { text: 'HTML', link: '/html/' },
-        { text: 'JavaScript', link: '/js/' }
+        { 
+          text: 'Tools', 
+          link: '/',
+          items: [
+            {
+              text: 'Git',
+              link: '/git/'
+            }
+          ]
+        },
     ],
     sidebar: {
       '/css/': [
@@ -59,6 +67,25 @@ module.exports = {
           children: [
             '',
             'demo'
+          ]
+        }
+      ],
+      '/js/': [
+        {
+          title: 'JavaScript',
+          collapsable: true,
+          children: [
+            '',
+          ]
+        }
+      ],
+      '/git/': [
+        {
+          title: 'Git',
+          collapsable: true,
+          children: [
+            '',
+            'github'
           ]
         }
       ]
