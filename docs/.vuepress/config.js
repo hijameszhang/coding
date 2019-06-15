@@ -34,6 +34,10 @@ module.exports = {
             {
               text: 'JavaScript',
               link: '/js/'
+            },
+            {
+              text: 'Vue',
+              link: '/vue/'
             }
           ]
         },
@@ -80,6 +84,17 @@ module.exports = {
           collapsable: true,
           children: [
             '',
+            'ifElseRefactor'
+          ]
+        }
+      ],
+      '/vue/': [
+        {
+          title: 'Vue',
+          collapsable: true,
+          children: [
+            '',
+            'vuepressToGithub'
           ]
         }
       ],
