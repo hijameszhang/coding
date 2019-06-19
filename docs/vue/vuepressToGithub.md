@@ -266,7 +266,7 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
 ```
 效果如下：
-![image.png](/images/20190619205213.png)
+![image.png](/coding/images/20190619205213.png)
 
 如果你想自定义首页或者其他页面，可以在页面的md文件中添加页面Vue文件。Vue文件放置在`docs/.vuepress/components`目录中。
 
@@ -324,10 +324,10 @@ git push -f git@github.com:hijameszhang/coding.git master
 :::
 
 ### Github Pages 设置
-![image.png](/images/github_settings.png)
+![image.png](/coding/images/github_settings.png)
 
 
-![image.png](/images/githubPages.png)
+![image.png](/coding/images/githubPages.png)
 
 #### 小技巧
 因为GitHub Pages只有3个选项:
@@ -346,7 +346,7 @@ git push -f git@github.com:hijameszhang/coding.git master
 ```
 
 为了方便查看源代码, 还需要设置一下默认的分支:
-![image.png](/images/default_branch.png)
+![image.png](/coding/images/default_branch.png)
 
 ## 遇到的问题
 在利用vuepress构建静态站点时, 发现提交代码到github时会出错:
