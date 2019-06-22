@@ -9,5 +9,13 @@
   },
   "repository": "https://github.com/hijameszhang/coding.git",
   "author": "jameszhang <hellojameszhang@163.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
