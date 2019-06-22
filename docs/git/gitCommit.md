@@ -50,6 +50,48 @@ subject 是commit目的的一个简短描述, 一般不超过50个字符
 
 ## 使用commitizen 
 工具commitizen可以帮忙我们写出规范的commit message. 
-> [commitizen Github库](https://github.com/commitizen/cz-cli)
+> [Github](https://github.com/commitizen/cz-cli)
 
+### 安装
+```
+> npm install -g commitizen
+```
+### 在项目中使用通用commit规范
+```
+> commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+接下来我们就可以愉快的使用`git cz`命令来代替`git commit`命令了.
 
+```
+E:\github\coding_docs>git cz
+cz-cli@3.1.1, cz-conventional-changelog@2.1.0
+
+Line 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.
+
+? Select the type of change that you're committing: feat:     A new feature
+? What is the scope of this change (e.g. component or file name)? (press enter to skip)
+ gitCommit.md, package.json
+? Write a short, imperative tense description of the change:
+ add a new md file=> how to use git well
+? Provide a longer description of the change: (press enter to skip)
+
+? Are there any breaking changes? Yes
+? Describe the breaking changes:
+ how to use git well
+? Does this change affect any open issues? No
+```
+
+## 使用gitmoji
+gitmoji 和 commitizen的作用都是帮助我们写出规范的commit message，不过gitmoji有更好玩的 moji表情。（ 用moji来表示type ）
+> [Github](https://github.com/carloscuesta/gitmoji-cli)
+
+### 安装
+```
+npm install -g gitmoji-cli
+```
+
+### 使用
+```
+gitmoji -c
+```
+挑选个符合场景的moji提交本次更改:
