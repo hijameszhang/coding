@@ -49,8 +49,7 @@ subject 是commit目的的一个简短描述, 一般不超过50个字符
 * 关闭issue或是链接到相关文档, 如: Closes #111923, Closes #93201
 
 ## 使用commitizen 
-工具commitizen可以帮忙我们写出规范的commit message. 
-> [Github](https://github.com/commitizen/cz-cli)
+工具commitizen可以帮忙我们写出规范的commit message.   [Github](https://github.com/commitizen/cz-cli)
 
 ### 安装
 ```
@@ -82,8 +81,7 @@ Line 1 will be cropped at 100 characters. All other lines will be wrapped after 
 ```
 
 ## 使用gitmoji
-gitmoji 和 commitizen的作用都是帮助我们写出规范的commit message，不过gitmoji有更好玩的 moji表情。（ 用moji来表示type ）
-> [Github](https://github.com/carloscuesta/gitmoji-cli)
+gitmoji 和 commitizen的作用都是帮助我们写出规范的commit message，不过gitmoji有更好玩的 moji表情。（ 用moji来表示type ） [Github](https://github.com/carloscuesta/gitmoji-cli)
 
 ### 安装
 ```
@@ -95,3 +93,51 @@ npm install -g gitmoji-cli
 gitmoji -c
 ```
 挑选个符合场景的moji提交本次更改:
+![images](/coding/images/640.gif)
+
+## 使用Git hooks
+与其他版本控制系统一样，当某些重要事件发生时，Git 可以调用自定义脚本，Git 有很多钩子可以用来调用脚本自定义 Git。在 .git -> hooks 目录下可以看到示例。 例如：pre-commit就是在代码提交之前做些事情。如果你打开了 hooks 目录里面的 *.sample 文件，你可以看见里面写的shell脚本。但是我想用 Js 写 hooks 咋办？husky、pre-commit就能满足你。
+
+现在我们想实现一个提交代码时使用 Eslint 进行代码检查的功能
+
+### pre-commit  [GitHub](https://github.com/observing/pre-commit)
+
+#### 安装
+```
+npm install --save-dev pre-commit
+```
+#### 配置
+在package.json 中配置pre-commit
+```
+"script": {
+  "lint": "eslint [options] [file|dir|glob|*]"
+},
+"pre-commit": [
+  "lint"
+]
+```
+#### 提交代码:
+```
+> git commit -m "test:Keep calm and commit"
+```
+
+### husky  [Github](https://github.com/typicode/husky)
+#### 安装
+```
+> npm install husky@next --save-dev
+```
+#### 配置
+和 pre-commit 一样，还是在package.json中配置。但是处理pre-commit钩子它还可以做的更多。
+```
+{
+  "scripts": {
+    "lint": "eslint [options] [file|dir|glob]*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm lint",
+      "pre-push": "..."
+    }
+  }
+}
+```

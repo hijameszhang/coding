@@ -104,7 +104,8 @@ module.exports = {
           collapsable: true,
           children: [
             '',
-            'github'
+            'github',
+            'gitCommit'
           ]
         }
       ]
