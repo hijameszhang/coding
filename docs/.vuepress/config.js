@@ -2,7 +2,19 @@ var fs = require("fs");
 var path = require("path");
 
 var excluded = ['.vuepress']
+function getFileNameList(name){
+  var pathName = path.resolve(__dirname, "..", name)
 
+  files = fs.readdirSync(pathName)
+  var res = ['']
+  files.forEach(element => {
+    if(element !== 'README.md') {
+      var t = element.replace(/\.md/gi, '')
+      res.push(t)
+    }
+  });
+  return res.sort()
+}
 module.exports = {
   title: 'Web Developer',  // 设置网站标题
   description : 'Web developer',
@@ -38,6 +50,10 @@ module.exports = {
             {
               text: 'Vue',
               link: '/vue/'
+            },
+            {
+              text: 'Node.js',
+              link: '/nodejs/'
             }
           ]
         },
@@ -61,53 +77,42 @@ module.exports = {
         {
           title: 'CSS',
           collapsable: true,
-          children: [
-            '',
-            'basis',
-            'layout'
-          ]
+          children: getFileNameList('css')
         }
       ],
       '/html/': [
         {
           title: 'HTML',
           collapsable: true,
-          children: [
-            '',
-            'demo'
-          ]
+          children: getFileNameList('html')
         }
       ],
       '/js/': [
         {
           title: 'JavaScript',
           collapsable: true,
-          children: [
-            '',
-            'ifElseRefactor'
-          ]
+          children: getFileNameList('js')
         }
       ],
       '/vue/': [
         {
           title: 'Vue',
           collapsable: true,
-          children: [
-            '',
-            'vuepressToGithub'
-          ]
+          children: getFileNameList('vue')
         }
       ],
       '/git/': [
         {
           title: 'Git',
           collapsable: true,
-          children: [
-            '',
-            'github',
-            'gitCommit',
-            'githubTools'
-          ]
+          children: getFileNameList('git')
+        },
+      ],
+      '/nodejs/': [
+        {
+          title: 'Node.js',
+          collapsable: true,
+          children: getFileNameList('nodejs')
         }
       ]
     },

@@ -2,3 +2,5 @@ node_modules
 docs/.vuepress/dist
 package-lock.json
 yarn-error.log
+dump.txt
+log.txt
