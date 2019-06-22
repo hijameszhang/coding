@@ -105,7 +105,8 @@ module.exports = {
           children: [
             '',
             'github',
-            'gitCommit'
+            'gitCommit',
+            'githubTools'
           ]
         }
       ]
