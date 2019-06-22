@@ -108,7 +108,7 @@ npm install --save-dev pre-commit
 ```
 #### 配置
 在package.json 中配置pre-commit
-```
+``` json
 "script": {
   "lint": "eslint [options] [file|dir|glob|*]"
 },
@@ -128,7 +128,7 @@ npm install --save-dev pre-commit
 ```
 #### 配置
 和 pre-commit 一样，还是在package.json中配置。但是处理pre-commit钩子它还可以做的更多。
-```
+``` json
 {
   "scripts": {
     "lint": "eslint [options] [file|dir|glob]*"
