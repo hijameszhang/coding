@@ -17,12 +17,9 @@ v10.7.0
 
 ## nrm 快速切换 NPM 源
 
-由于我国的网络环境，npm源访问会很慢，这时我们可以使用cnpm 或是 用nrm把源换成能国内的
+由于我国的网络环境，npm源访问会很慢，这时我们可以使用nrm把源换成能国内的
 
-### cnpm 安装
-```
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-```
+### 安装
 或是使用nrm
 ```
 npm install -g nrm
