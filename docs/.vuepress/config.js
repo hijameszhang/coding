@@ -1,24 +1,88 @@
-var fs = require("fs");
-var path = require("path");
+const fs = require("fs");
+const path = require("path");
+const basePath = './docs/'
 
-var excluded = ['.vuepress']
-function getFileNameList(name){
-  var pathName = path.resolve(__dirname, "..", name)
-
-  files = fs.readdirSync(pathName)
-  var res = ['']
-  files.forEach(element => {
-    if(element !== 'README.md') {
-      var t = element.replace(/\.md/gi, '')
-      res.push(t)
+/**
+ * @description: 根据文件列表添单, 生成sidebar children项
+ * @param {Array} files , 读取到文件名列表
+ * @returns {Array}
+ */
+function genSidebarChildren (files) {
+  let arr = []
+  files.forEach(file => {
+    if(file === 'en') {
+      return 
+    }
+    let fileName = file.replace('.md', '')
+    if(fileName !== 'README') {
+      arr.push(fileName)
     }
   });
-  return res.sort()
+  return arr
 }
+/**
+ * @description: 将以splitStr为分割符的字符串首字母大写, 如: hello-world => HelloWorld
+ * @param {String} str 
+ * @param {String} splitStr 
+ * @returns {String}
+ */
+function stringCapitalize(str, splitStr = '-') {
+  var arr = str.split(splitStr)
+  arr.forEach((item, index) => {
+      if(item.length > 0) {
+          var newItem = item[0].toUpperCase() + item.substr(1, )
+          arr[index] = newItem
+      }
+  })
+  return arr.join('')
+}
+
+const fileNameMaps = {
+  css: 'CSS',
+  html: 'HTML',
+  js: 'JavaScript',
+  nodejs: 'Node.js'
+}
+let sidebar = {}
+
+/**
+ * @description: 更新sidebar
+ */
+function updateSlideBar() {
+  fs.readdir(basePath, (err, files) => {
+    if(err) {
+      console.log(err)
+      return console.error(err)
+    }
+    files.forEach(fileName => {
+      let navNotsShow = ['.vuepress', 'README.md', 'static']
+      if(navNotsShow.indexOf(fileName) !== -1) {
+        return 
+      }
+      fs.readdir(`${basePath}${fileName}`, (err, files) => {
+        if(err) {
+          return console.error(err)
+        }
+        let title = fileNameMaps[fileName] ? fileNameMaps[fileName]: stringCapitalize(fileName)
+        sidebar[`/${fileName}/`] = [
+          {
+            title: title,
+            collapsable: false,
+            children: genSidebarChildren(files).sort()
+          }
+        ]
+      })
+    });
+  })
+}
+
+updateSlideBar()
+
 module.exports = {
   title: 'Web Developer',  // 设置网站标题
   description : 'Web developer',
   base : '/coding/',
+  serviceWorker: true,
   themeConfig : {
     header: {
       background: {
@@ -72,50 +136,7 @@ module.exports = {
           link: 'https://github.com/hijameszhang/coding'
         }
     ],
-    sidebar: {
-      '/css/': [
-        {
-          title: 'CSS',
-          collapsable: true,
-          children: getFileNameList('css')
-        }
-      ],
-      '/html/': [
-        {
-          title: 'HTML',
-          collapsable: true,
-          children: getFileNameList('html')
-        }
-      ],
-      '/js/': [
-        {
-          title: 'JavaScript',
-          collapsable: true,
-          children: getFileNameList('js')
-        }
-      ],
-      '/vue/': [
-        {
-          title: 'Vue',
-          collapsable: true,
-          children: getFileNameList('vue')
-        }
-      ],
-      '/git/': [
-        {
-          title: 'Git',
-          collapsable: true,
-          children: getFileNameList('git')
-        },
-      ],
-      '/nodejs/': [
-        {
-          title: 'Node.js',
-          collapsable: true,
-          children: getFileNameList('nodejs')
-        }
-      ]
-    },
+    sidebar: sidebar,
     sidebarDepth : 6
   },
 

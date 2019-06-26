@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "deploy": "yarn build && ./deploy.bat"
+    "deploy": "yarn build && ./deploy.bat",
+    "koa": "forever start --watch ./server/simpleKoa.js"
   },
   "repository": "https://github.com/hijameszhang/coding.git",
   "author": "jameszhang <hellojameszhang@163.com>",
@@ -17,5 +18,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "koa": "^2.7.0"
   }
 }
