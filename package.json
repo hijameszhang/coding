@@ -6,7 +6,7 @@
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "deploy": "yarn build && ./deploy.bat",
-    "koa": "nodemon ./server/simpleKoa.js"
+    "koa": "nodemon ./server/koa/index.js"
   },
   "repository": "https://github.com/hijameszhang/coding.git",
   "author": "jameszhang <hellojameszhang@163.com>",
@@ -20,6 +20,7 @@
     }
   },
   "dependencies": {
-    "koa": "^2.7.0"
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0"
   }
 }
