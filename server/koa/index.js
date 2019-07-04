@@ -1,1 +1,1 @@
-require('./simpleKoaRouter')
+require('./koa-mysql')
