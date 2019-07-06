@@ -1,1 +1,1 @@
-require('./koa-mysql')
+require('./koa-redisServer')
