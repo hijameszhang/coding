@@ -3248,7 +3248,7 @@ function identity<T>(arg: T): T {
 ``` js
 let output = identity<string>("myString");  // type of output will be 'string'
 ```
-这里我们明确的指定了T是string类型，并做为一个参数传给函数，使用了<>括起来而不是()。
+这里我们明确的指定了T是string类型，并做为一个参数传给函数，使用了`<>`括起来而不是()。
 
 第二种方法更普遍。利用了类型推论 -- 即编译器会根据传入的参数自动地帮助我们确定T的类型：
 ``` js
@@ -3276,7 +3276,8 @@ function loggingIdentity<T>(arg: T): T {
     return arg;
 }
 ```
-如果这么做，编译器会报错说我们使用了arg的.length属性，但是没有地方指明arg具有这个属性。 记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有 .length属性的。
+如果这么做，编译器会报错说我们使用了arg的.length属性，但是没有地方指明arg具有这个属性。 
+记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有 .length属性的。
 
 现在假设我们想操作T类型的数组而不直接是T。由于我们操作的是数组，所以.length属性是应该存在的。 我们可以像创建其它数组一样创建这个数组：
 
@@ -3340,7 +3341,7 @@ function identity<T>(arg: T): T {
 let myIdentity: GenericIdentityFn = identity;
 ```
 一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。 
-这样我们就能清楚的知道使用的具体是哪个泛型类型（比如： Dictionary<string>而不只是Dictionary）。 
+这样我们就能清楚的知道使用的具体是哪个泛型类型（比如： `Dictionary<string>`而不只是Dictionary）。 
 这样接口里的其它成员也能知道这个参数的类型了。
 ``` js
 interface GenericIdentityFn<T> {
@@ -3626,7 +3627,7 @@ let c: Circle = {
 }
 ```
 另一个变化是枚举类型本身变成了每个枚举成员的 联合。 
-虽然我们还没有讨论[联合类型](./Advanced Types.md#union-types)，但你只要知道通过联合枚举，类型系统能够利用这样一个事实，它可以知道枚举里的值的集合。 
+虽然我们还没有讨论联合类型，但你只要知道通过联合枚举，类型系统能够利用这样一个事实，它可以知道枚举里的值的集合。 
 因此，TypeScript能够捕获在比较值的时候犯的愚蠢的错误。 例如：
 ``` js
 enum E {
@@ -3681,7 +3682,7 @@ var Enum;
 var a = Enum.A;
 var nameOfA = Enum[a]; // "A"
 ```
-生成的代码中，枚举类型被编译成一个对象，它包含了正向映射（ name -> value）和反向映射（ value -> name）。 
+生成的代码中，枚举类型被编译成一个对象，它包含了正向映射`（ name -> value）`和反向映射`（ value -> name）`。 
 引用枚举成员总会生成为对属性访问并且永远也不会内联代码。
 
 要注意的是 不会为字符串枚举成员生成反向映射。
@@ -3725,14 +3726,576 @@ declare enum Enum {
 外部枚举和非外部枚举之间有一个重要的区别，在正常的枚举里，没有初始化方法的成员被当成常数成员。 
 对于非常数的外部枚举而言，没有初始化方法时被当做需要经过计算的。
 
-## JSX
-
 ## 装饰器
+随着TypeScript和ES6里引入了类，在一些场景下我们需要额外的特性来支持标注或修改类及其成员。 
+装饰器（Decorators）为我们在类的声明及成员上通过元编程语法添加标注提供了一种方式。 
+Javascript里的装饰器目前处在 建议征集的第二阶段，但在TypeScript里已做为一项实验性特性予以支持。
+
+::: tip
+装饰器是一项实验性特性，在未来的版本中可能会发生改变。
+
+若要启用实验性的装饰器特性，你必须在命令行或`tsconfig.json`里启用`experimentalDecorators`编译器选项：
+
+命令行:
+```
+tsc --target ES5 --experimentalDecorators
+tsconfig.json:
+
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "experimentalDecorators": true
+    }
+}
+```
+::: 
+
+### 装饰器
+装饰器是一种特殊类型的声明，它能够被附加到类声明，方法， 访问符，属性或参数上。 
+装饰器使用 `@expression`这种形式，`expression`求值后必须为一个函数，它会在运行时被调用，被装饰的声明信息做为参数传入。
+
+例如，有一个@sealed装饰器，我们会这样定义sealed函数：
+``` js
+function sealed(target) {
+    // do something with "target" ...
+}
+```
+注意  后面类装饰器小节里有一个更加详细的例子。
+
+### 装饰器工厂
+如果我们要定制一个修饰器如何应用到一个声明上，我们得写一个装饰器工厂函数。 
+装饰器工厂就是一个简单的函数，它返回一个表达式，以供装饰器在运行时调用。
+
+我们可以通过下面的方式来写一个装饰器工厂函数：
+``` js
+function color(value: string) { // 这是一个装饰器工厂
+    return function (target) { //  这是装饰器
+        // do something with "target" and "value"...
+    }
+}
+```
+注意  下面方法装饰器小节里有一个更加详细的例子。
+
+### 装饰器组合
+多个装饰器可以同时应用到一个声明上，就像下面的示例：
+```
+书写在同一行上：
+@f @g x
+
+书写在多行上：
+@f
+@g
+x
+```
+当多个装饰器应用于一个声明上，它们求值方式与复合函数相似。
+在这个模型下，当复合f和g时，复合的结果(f ∘ g)(x)等同于f(g(x))。
+
+::: tip TypeScript 多个装饰器的应用规则
+在TypeScript里，当多个装饰器应用在一个声明上时会进行如下步骤的操作：
+由上至下依次对装饰器表达式求值。
+求值的结果会被当作函数，由下至上依次调用。
+:::
+
+如果我们使用装饰器工厂的话，可以通过下面的例子来观察它们求值的顺序：
+``` js
+function f() {
+    console.log("f(): evaluated");
+    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
+        console.log("f(): called");
+    }
+}
+
+function g() {
+    console.log("g(): evaluated");
+    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
+        console.log("g(): called");
+    }
+}
+
+class C {
+    @f()
+    @g()
+    method() {}
+}
+```
+在控制台里会打印出如下结果：
+``` 
+f(): evaluated
+g(): evaluated
+g(): called
+f(): called
+```
+### 装饰器求值
+类中不同声明上的装饰器将按以下规定的顺序应用：
+* 参数装饰器，然后依次是方法装饰器，访问符装饰器，或属性装饰器应用到每个实例成员。
+* 参数装饰器，然后依次是方法装饰器，访问符装饰器，或属性装饰器应用到每个静态成员。
+* 参数装饰器应用到构造函数。
+* 类装饰器应用到类。
+
+### 类装饰器
+::: tip
+类装饰器在类声明之前被声明（紧靠着类声明）。 
+类装饰器应用于类构造函数，可以用来监视，修改或替换类定义。 
+类装饰器不能用在声明文件中( .d.ts)，也不能用在任何外部上下文中（比如declare的类）。
+:::
+
+类装饰器表达式会在运行时当作函数被调用，类的构造函数作为其唯一的参数。
+
+如果类装饰器返回一个值，它会使用提供的构造函数来替换类的声明。
+
+::: tip 
+如果你要返回一个新的构造函数，你必须注意处理好原来的原型链。 在运行时的装饰器调用逻辑中 不会为你做这些。
+:::
+
+下面是使用类装饰器(@sealed)的例子，应用在Greeter类：
+``` js
+@sealed
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+```
+我们可以这样定义@sealed装饰器：
+``` js
+function sealed(constructor: Function) {
+    Object.seal(constructor);
+    Object.seal(constructor.prototype);
+}
+```
+当@sealed被执行的时候，它将密封此类的构造函数和原型。(注：参见Object.seal)
+
+下面是一个重载构造函数的例子。
+``` js 
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+@classDecorator
+class Greeter {
+    property = "property";
+    hello: string;
+    constructor(m: string) {
+        this.hello = m;
+    }
+}
+
+console.log(new Greeter("world"));
+```
+### 方法装饰器
+::: tip
+方法装饰器声明在一个方法的声明之前（紧靠着方法声明）。 
+它会被应用到方法的 属性描述符上，可以用来监视，修改或者替换方法定义。 
+方法装饰器不能用在声明文件( .d.ts)，重载或者任何外部上下文（比如declare的类）中。
+:::
+
+方法装饰器表达式会在运行时当作函数被调用，传入下列3个参数：
+* 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+* 成员的名字。
+* 成员的属性描述符。
+
+::: tip 注意  
+* 如果代码输出目标版本小于ES5，属性描述符将会是undefined。
+* 如果方法装饰器返回一个值，它会被用作方法的属性描述符。
+* 如果代码输出目标版本小于ES5返回值会被忽略。
+::: 
+
+下面是一个方法装饰器（@enumerable）的例子，应用于Greeter类的方法上：
+``` js
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+
+    @enumerable(false)
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+```
+我们可以用下面的函数声明来定义@enumerable装饰器：
+``` js
+function enumerable(value: boolean) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.enumerable = value;
+    };
+}
+```
+这里的@enumerable(false)是一个装饰器工厂。 当装饰器 @enumerable(false)被调用时，它会修改属性描述符的enumerable属性。
+
+### 访问器装饰器
+访问器装饰器声明在一个访问器的声明之前（紧靠着访问器声明）。 
+访问器装饰器应用于访问器的 属性描述符并且可以用来监视，修改或替换一个访问器的定义。 
+访问器装饰器不能用在声明文件中（.d.ts），或者任何外部上下文（比如 declare的类）里。
+
+::: tip 注意  
+TypeScript不允许同时装饰一个成员的get和set访问器。取而代之的是，一个成员的所有装饰的必须应用在文档顺序的第一个访问器上。
+这是因为，在装饰器应用于一个属性描述符时，它联合了get和set访问器，而不是分开声明的。
+::: 
+
+访问器装饰器表达式会在运行时当作函数被调用，传入下列3个参数：
+* 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+* 成员的名字。
+* 成员的属性描述符。
+
+::: tip 注意  
+* 如果代码输出目标版本小于ES5，Property Descriptor将会是undefined。
+* 如果访问器装饰器返回一个值，它会被用作方法的属性描述符。
+* 如果代码输出目标版本小于ES5返回值会被忽略。
+::: 
+
+下面是使用了访问器装饰器（@configurable）的例子，应用于Point类的成员上：
+``` js
+class Point {
+    private _x: number;
+    private _y: number;
+    constructor(x: number, y: number) {
+        this._x = x;
+        this._y = y;
+    }
+
+    @configurable(false)
+    get x() { return this._x; }
+
+    @configurable(false)
+    get y() { return this._y; }
+}
+```
+我们可以通过如下函数声明来定义@configurable装饰器：
+``` js
+function configurable(value: boolean) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.configurable = value;
+    };
+}
+```
+### 属性装饰器
+属性装饰器声明在一个属性声明之前（紧靠着属性声明）。 
+属性装饰器不能用在声明文件中（.d.ts），或者任何外部上下文（比如 declare的类）里。
+
+属性装饰器表达式会在运行时当作函数被调用，传入下列2个参数：
+* 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+* 成员的名字。
+
+::: tip 注意  
+属性描述符不会做为参数传入属性装饰器，这与TypeScript是如何初始化属性装饰器的有关。 
+因为目前没有办法在定义一个原型对象的成员时描述一个实例属性，并且没办法监视或修改一个属性的初始化方法。
+返回值也会被忽略。
+因此，属性描述符只能用来监视类中是否声明了某个名字的属性。
+::: 
+
+我们可以用它来记录这个属性的元数据，如下例所示：
+``` js
+class Greeter {
+    @format("Hello, %s")
+    greeting: string;
+
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        let formatString = getFormat(this, "greeting");
+        return formatString.replace("%s", this.greeting);
+    }
+}
+```
+然后定义@format装饰器和getFormat函数：
+``` js
+import "reflect-metadata";
+
+const formatMetadataKey = Symbol("format");
+
+function format(formatString: string) {
+    return Reflect.metadata(formatMetadataKey, formatString);
+}
+
+function getFormat(target: any, propertyKey: string) {
+    return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
+}
+```
+这个`@format("Hello, %s")`装饰器是个 装饰器工厂。 当 `@format("Hello, %s")`被调用时，它添加一条这个属性的元数据，通过reflect-metadata库里的Reflect.metadata函数。 
+当 getFormat被调用时，它读取格式的元数据。
+
+::: tip 注意  
+这个例子需要使用reflect-metadata库。 查看 元数据了解reflect-metadata库更详细的信息。
+::: 
+
+### 参数装饰器
+参数装饰器声明在一个参数声明之前（紧靠着参数声明）。 
+参数装饰器应用于类构造函数或方法声明。 参数装饰器不能用在声明文件（.d.ts），重载或其它外部上下文（比如 declare的类）里。
+
+参数装饰器表达式会在运行时当作函数被调用，传入下列3个参数：
+* 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+* 成员的名字。
+* 参数在函数参数列表中的索引。
+
+::: tip 注意  
+参数装饰器只能用来监视一个方法的参数是否被传入。
+
+参数装饰器的返回值会被忽略。
+::: 
+
+下例定义了参数装饰器（@required）并应用于Greeter类方法的一个参数：
+``` js
+class Greeter {
+    greeting: string;
+
+    constructor(message: string) {
+        this.greeting = message;
+    }
+
+    @validate
+    greet(@required name: string) {
+        return "Hello " + name + ", " + this.greeting;
+    }
+}
+```
+然后我们使用下面的函数定义 @required 和 @validate 装饰器：
+``` js
+import "reflect-metadata";
+
+const requiredMetadataKey = Symbol("required");
+
+function required(target: Object, propertyKey: string | symbol, parameterIndex: number) {
+    let existingRequiredParameters: number[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyKey) || [];
+    existingRequiredParameters.push(parameterIndex);
+    Reflect.defineMetadata(requiredMetadataKey, existingRequiredParameters, target, propertyKey);
+}
+
+function validate(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) {
+    let method = descriptor.value;
+    descriptor.value = function () {
+        let requiredParameters: number[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyName);
+        if (requiredParameters) {
+            for (let parameterIndex of requiredParameters) {
+                if (parameterIndex >= arguments.length || arguments[parameterIndex] === undefined) {
+                    throw new Error("Missing required argument.");
+                }
+            }
+        }
+
+        return method.apply(this, arguments);
+    }
+}
+```
+@required装饰器添加了元数据实体把参数标记为必需的。 @validate装饰器把greet方法包裹在一个函数里在调用原先的函数前验证函数参数。
+
+注意  这个例子使用了reflect-metadata库。 查看 元数据了解reflect-metadata库的更多信息。
+
+### 元数据
+一些例子使用了reflect-metadata库来支持实验性的metadata API。 
+这个库还不是ECMAScript (JavaScript)标准的一部分。 
+然而，当装饰器被ECMAScript官方标准采纳后，这些扩展也将被推荐给ECMAScript以采纳。
+
+你可以通过npm安装这个库：
+```
+npm i reflect-metadata --save
+```
+TypeScript支持为带有装饰器的声明生成元数据。 
+你需要在命令行或 tsconfig.json里启用emitDecoratorMetadata编译器选项。
+
+``` 
+Command Line:
+
+tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata
+tsconfig.json:
+
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}
+```
+当启用后，只要reflect-metadata库被引入了，设计阶段添加的类型信息可以在运行时使用。
+
+如下例所示：
+``` js
+import "reflect-metadata";
+
+class Point {
+    x: number;
+    y: number;
+}
+
+class Line {
+    private _p0: Point;
+    private _p1: Point;
+
+    @validate
+    set p0(value: Point) { this._p0 = value; }
+    get p0() { return this._p0; }
+
+    @validate
+    set p1(value: Point) { this._p1 = value; }
+    get p1() { return this._p1; }
+}
+
+function validate<T>(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<T>) {
+    let set = descriptor.set;
+    descriptor.set = function (value: T) {
+        let type = Reflect.getMetadata("design:type", target, propertyKey);
+        if (!(value instanceof type)) {
+            throw new TypeError("Invalid type.");
+        }
+        set(value);
+    }
+}
+TypeScript编译器可以通过@Reflect.metadata装饰器注入设计阶段的类型信息。 你可以认为它相当于下面的TypeScript：
+
+class Line {
+    private _p0: Point;
+    private _p1: Point;
+
+    @validate
+    @Reflect.metadata("design:type", Point)
+    set p0(value: Point) { this._p0 = value; }
+    get p0() { return this._p0; }
+
+    @validate
+    @Reflect.metadata("design:type", Point)
+    set p1(value: Point) { this._p1 = value; }
+    get p1() { return this._p1; }
+}
+```
+::: tip warning 
+装饰器元数据是个实验性的特性并且可能在以后的版本中发生破坏性的改变（breaking changes）。
+:::
 
 ## Mixins
+除了传统的面向对象继承方式，还流行一种通过可重用组件创建类的方式，就是联合另一个简单类的代码。 
+你可能在Scala等语言里对mixins及其特性已经很熟悉了，但它在JavaScript中也是很流行的。
 
+### 混入示例
+下面的代码演示了如何在TypeScript里使用混入。 
+后面我们还会解释这段代码是怎么工作的。
+``` js
+// Disposable Mixin
+class Disposable {
+    isDisposed: boolean;
+    dispose() {
+        this.isDisposed = true;
+    }
+
+}
+
+// Activatable Mixin
+class Activatable {
+    isActive: boolean;
+    activate() {
+        this.isActive = true;
+    }
+    deactivate() {
+        this.isActive = false;
+    }
+}
+
+class SmartObject implements Disposable, Activatable {
+    constructor() {
+        setInterval(() => console.log(this.isActive + " : " + this.isDisposed), 500);
+    }
+
+    interact() {
+        this.activate();
+    }
+
+    // Disposable
+    isDisposed: boolean = false;
+    dispose: () => void;
+    // Activatable
+    isActive: boolean = false;
+    activate: () => void;
+    deactivate: () => void;
+}
+applyMixins(SmartObject, [Disposable, Activatable]);
+
+let smartObj = new SmartObject();
+setTimeout(() => smartObj.interact(), 1000);
+
+////////////////////////////////////////
+// In your runtime library somewhere
+////////////////////////////////////////
+
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
+}
+```
+理解这个例子
+代码里首先定义了两个类，它们将做为mixins。 
+可以看到每个类都只定义了一个特定的行为或功能。 稍后我们使用它们来创建一个新类，同时具有这两种功能。
+
+``` js
+// Disposable Mixin
+class Disposable {
+    isDisposed: boolean;
+    dispose() {
+        this.isDisposed = true;
+    }
+
+}
+
+// Activatable Mixin
+class Activatable {
+    isActive: boolean;
+    activate() {
+        this.isActive = true;
+    }
+    deactivate() {
+        this.isActive = false;
+    }
+}
+```
+下面创建一个类，结合了这两个mixins。 下面来看一下具体是怎么操作的：
+``` js
+class SmartObject implements Disposable, Activatable {
+```
+首先应该注意到的是，没使用extends而是使用implements。 
+把类当成了接口，仅使用Disposable和Activatable的类型而非其实现。 
+这意味着我们需要在类里面实现接口。 
+但是这是我们在用mixin时想避免的。
+
+我们可以这么做来达到目的，为将要mixin进来的属性方法创建出占位属性。 
+这告诉编译器这些成员在运行时是可用的。 
+这样就能使用mixin带来的便利，虽说需要提前定义一些占位属性。
+``` js
+// Disposable
+isDisposed: boolean = false;
+dispose: () => void;
+// Activatable
+isActive: boolean = false;
+activate: () => void;
+deactivate: () => void;
+```
+最后，把mixins混入定义的类，完成全部实现部分。
+``` js
+applyMixins(SmartObject, [Disposable, Activatable]);
+```
+最后，创建这个帮助函数，帮我们做混入操作。 
+它会遍历mixins上的所有属性，并复制到目标上去，把之前的占位属性替换成真正的实现代码。
+``` js
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        })
+    });
+}
+```
 ## 模块
-
+// to do 
 ## 模块解析
 
 ## 命名空间
@@ -3740,6 +4303,8 @@ declare enum Enum {
 ## 命名空间和模块
 
 ## 声明合并 
+
+## JSX
 
 ## 三斜线指令 
 

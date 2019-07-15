@@ -133,7 +133,7 @@ Done in 23.86s.
     |-unit                    // 单元测试文件目录
       |-example.spec.ts
   |-.browserslistrc           // 
-  |-.gitignore                // git忽略文件
+  |-.gitignore                // git忽略文件相关配置
   |-babel.config.js           // babel配置
   |-jest.config.js            // jest配置
   |-package.json              // 
@@ -143,3 +143,5 @@ Done in 23.86s.
   |-yarn.lock
 
 ```
+
+// to do 
