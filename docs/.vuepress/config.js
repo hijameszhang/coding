@@ -42,6 +42,7 @@ const fileNameMaps = {
   html: 'HTML',
   js: 'JavaScript',
   nodejs: 'Node.js',
+  web: 'Web Page',
   trainer: '讲师角色认知'
 }
 let sidebar = {}
@@ -123,6 +124,10 @@ module.exports = {
             {
               text: 'Node.js',
               link: '/nodejs/'
+            },
+            {
+              text: 'Web',
+              link: '/web/'
             }
           ]
         },
