@@ -85,7 +85,11 @@ module.exports = {
   description : 'Web developer',
   base : '/coding/',
   serviceWorker: true,
+  head: [
+    ['link', { rel: 'shortcut icon', type: "icon", href: `/coding/images/logo/my.jpg` }]
+  ],
   themeConfig : {
+    logo: '/images/logo/my.jpg',
     header: {
       background: {
         // url: '/assets/img/bg.jpg',
