@@ -20,8 +20,93 @@ export default {
   }
 };
 ```
+## 2. Vue组件渲染性能分析
+基于上面的案例(`长列表性能优化`), 可以通过`Object.freeze`来实现纯呈现的列表性能优化, 那如何来确认呢?
 
-## 2. 数据状态共享: Vue.observable( object )
+我们可以通过Chrome Devtools来检测. 但为了获得准确的性能分析数据, 我们需要开启Vue应用的性能模式. 
+
+### 开启Vue性能模式(适用于开发模式)
+在工程中的`main.js`中(Vue根实例初始化之前), 添加以下代码:
+``` js
+Vue.config.performance = true;
+```
+当然, 你也可以根据需要对当前环境进行判断, 来决定是否开启性能模式.
+``` js
+const isDev = process.env.NODE_ENV !== "production";
+Vue.config.performance = isDev;
+```
+这样, 将会激活Vue在内部用于标记组件性能的 Timing API. 如下图所示:
+![images.png](/coding/images/frontend/vue-performance1.png)
+
+假设, 此时我们创建好了一个demo工程, 并有一个`Hello.vue`的组件, 用于验证长列表渲染性能问题. 运行本地工程后, 打开浏览器到指定路由(确认有加载`Hello.vue`组件). 打开控制台, 并点击"reload"按钮, 如下图所示:
+![images.png](/coding/images/frontend/vue-performance2.png)
+
+此时, 将会记录页面性能. 因为已经在main.js上添加了Vue.config.performance设置，此时你将能够在分析中看到时序部分. 如下图所示.
+![images.png](/coding/images/frontend/vue-performance3.png)
+
+此时, 你会发现这里有3个指标:
+* init, 创建组件实例所花费的时间
+* render, 创建vDOM结构所花费的时间
+* patch, 将vDOM结构渲染成实际的DOM元素所花费的时间
+
+### 验证性能
+在此例中, http://localhost:8080/#/hello 路由下, 只有两个组件:
+```
+App.vue
+  Hello.vue
+```
+
+`App.vue`是视图组件, 只有一个`<router-view/>`
+
+`Hello.vue`只做一个简单的长列表(100000条件数据)展示, 代码如下:
+``` html {19-22}
+<template>
+ <div>
+   <span v-for="(item, idx) in users" :key="idx">
+     {{item.name}}
+   </span>
+ </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      users: []
+    }
+  },
+  components: {
+
+  },
+  created () {
+    let users = Array.from({ length: 100000 }, (item, index) => ({ name: index }))
+    this.users = users
+  }
+}
+</script>
+```
+此时, `Hello.vue`组件`render`&`patch`的时间为:
+* render -> 924ms
+* patch  -> 1440ms
+
+![images.png](/coding/images/frontend/vue-performance4.png)
+
+修改`Hello.vue`的`created`钩子函数中的代码如下:
+``` js
+created () {
+  let users = Array.from({ length: 100000 }, (item, index) => ({ name: index }))
+  this.users = Object.freeze(users)
+}
+```
+再次点击"reload"按钮, 重新测试性能. 
+此时, `Hello.vue`组件`render`&`patch`的时间为:
+* render -> 397ms (上一次测试结果为: 924ms, 节省时间: 527ms, 性能提供约为 57%)
+* patch  -> 782ms (上一次测试结果为: 1440ms, 节省时间: 658ms, 性能提供约为: 45.7%)
+
+这里仅测试了一次, 但从结果来看, 增加`Object.freeze`冻结后, 整体性能会有明显提升. 
+
+
+## 3. 不使用Vuex创建Store(Vue.observable)
 > 2.6.0 新增
 
 * 参数：{Object} object
@@ -90,7 +175,7 @@ export default {
  
 ```
 
-## 3. 属性&事件传递
+## 4. 属性&事件传递
 在写`Vue`组件时, 经常会遇到:
 * 组件层层传递`props`或`listerers`
 * 动态绑定`props`或`listerers`
@@ -123,7 +208,7 @@ export default {
 </script>
 ```
 
-## 4. 监听函数的
+## 5. 监听函数的
 有时, 需要在父组件监听子组件挂载后`mounted`, 做一些逻辑处理. 
 例如:
   加载远端组件时, 想抓取组件从远端加载到挂载的耗时. 
@@ -163,7 +248,7 @@ export default {
 </script>
 ```
 
-## 5. 函数式组件
+## 6. 函数式组件
 
 ::: tip
 函数式组件, 无状态，无法实例化，内部没有任何生命周期处理方法，非常轻量，因而渲染性能高，特别适合用来只依赖外部数据传递而变化的组件。
