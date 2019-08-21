@@ -99,6 +99,9 @@ created () {
 }
 ```
 再次点击"reload"按钮, 重新测试性能. 
+
+![images.png](/coding/images/frontend/vue-performance5.png)
+
 此时, `Hello.vue`组件`render`&`patch`的时间为:
 * render -> 397ms (上一次测试结果为: 924ms, 节省时间: 527ms, 性能提供约为 57%)
 * patch  -> 782ms (上一次测试结果为: 1440ms, 节省时间: 658ms, 性能提供约为: 45.7%)
