@@ -299,6 +299,266 @@ export default {
 </template>
 ```
 
+## 7. 作用域插槽
+> 在 2.6.0 中，Vue为具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)。它取代了 slot 和 slot-scope 这两个目前已被废弃但未被移除且仍在文档中的特性。新语法的由来可查阅这份 RFC。
+
+### 简单示例
+如何使用作用域插槽呢? 请先看如下示例:
+``` html
+<template>
+  <List :items="items">
+    <template slot-scope="{ filteredItems }">
+      <p v-for="item in filteredItems" :key="item">{{ item }}</p>
+    </template>
+  </List>
+</template>
+```
+使用`v-slot`, 可以直接在组件标签上写入该插槽的`scope`. 
+``` html
+<template>
+  <List v-slot="{ filteredItems }" :items="items">
+    <p v-for="item in filteredItems" :key="item">{{ item }}</p>
+  </List>
+</template>
+```
+
+::: tip
+`v-slot`只能在组件或`template`标签上使用, 不能使用在普通原生的HTML标签上.
+:::
+
+这样使得代码可读性增强, 特别是在一些很难说明模板变量来源的场景中.
+
+### v-slot 高级使用
+`v-slot`指令还引入了一种方法来组合使用`slot`&`scoped-slot`, 但需要用":"来分隔.
+
+``` html
+<template>
+  <Promised :promise="usersPromise">
+    <p slot="pending">Loading...</p>
+
+    <ul slot-scope="users">
+      <li v-for="user in users">{{ user.name }}</li>
+    </ul>
+
+    <p slot="rejected" slot-scope="error">Error: {{ error.message }}</p>
+  </Promised>
+</template>
+```
+使用`v-slot`重写:
+``` html
+<template>
+  <Promised :promise="usersPromise">
+    <template v-slot:pending>
+      <p>Loading...</p>
+    </template>
+
+    <template v-slot="users">
+      <ul>
+        <li v-for="user in users">{{ user.name }}</li>
+      </ul>
+    </template>
+
+    <template v-slot:rejected="error">
+      <p>Error: {{ error.message }}</p>
+    </template>
+  </Promised>
+</template>
+```
+
+`v-slot`还可以简写为 `#` , 重写上面的例子:
+``` html
+<template>
+  <Promised :promise="usersPromise">
+    <template #pending>
+      <p>Loading...</p>
+    </template>
+
+    <template #default="users">
+      <ul>
+        <li v-for="user in users">{{ user.name }}</li>
+      </ul>
+    </template>
+
+    <template #rejected="error">
+      <p>Error: {{ error.message }}</p>
+    </template>
+  </Promised>
+</template>
+```
+
+::: tip
+注意, `v-slot`的简写是 `#default`
+:::
+
+
+## 8. watch
+虽然`Vue.js`为我们提供了有用的`computed`, 但在某些场景下, 仍然还是需要使用到`watch`.
+
+::: tip
+默认情况下, `watch`只在被监听的属性值发生变化时执行. 
+:::
+
+例如:
+``` js
+export default {
+  data: () => ({
+    dog: ""
+  }),
+  watch: {
+    dog(newVal, oldVal) {
+      console.log(`Dog changed: ${newVal}`);
+    }
+  }
+};
+```
+如上代码所示, 只有当`dog`的值有发生改变时, `watch`中的`dog`函数才会执行.
+
+但是, 在某些情况下, 你可能需要在创建组件后立即运行监听程序. 
+当然, 你可以将逻辑迁移至`methods`中, 然后从`watch`和`created`钩子函数中分别调用它, 但有没有更简单一点的办法呢?
+
+你可以在使用`watch`时, 使用`immediate: true`选项, 这样它就会在组件创建时立即执行.
+
+``` js
+export default {
+  data: () => ({
+    dog: ""
+  }),
+  watch: {
+    dog: {
+      handler(newVal, oldVal) {
+        console.log(`Dog changed: ${newVal}`);
+      },
+      immediate: true
+    }
+  }
+};
+```
+
+
+## 9. 路由懒加载
+有时候我们想把某个路由下的所有组件都打包在同个异步块 (chunk) 中。只需要使用 命名 [chunk](https://webpack.js.org/guides/code-splitting/)，一个特殊的注释语法来提供 chunk name (需要 Webpack > 2.4)。
+
+``` js
+const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue')
+const Bar = () => import(/* webpackChunkName: "group-foo" */ './Bar.vue')
+const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
+```
+
+## 10. 图片懒加载
+
+[v-lazy-image](https://github.com/alexjoverm/v-lazy-image)图片懒加载组件.
+
+安装: 
+`npm install v-lazy-image`
+
+使用: 
+``` js
+// main.js
+import Vue from "vue";
+import { VLazyImagePlugin } from "v-lazy-image";
+
+Vue.use(VLazyImagePlugin);
+```
+
+``` html
+<template>
+  <v-lazy-image src="http://lorempixel.com/400/200/" />
+</template>
+```
+你也可以使用渐进式图像加载方式来加载图片, 通过设置`src-placeholder`先加载缩略图, 同时使用CSS应用自己的过滤效果.
+``` html
+<template>
+  <v-lazy-image
+    src="http://demo.com/demo.jpeg"
+    src-placeholder="http://demo.com/min-demo.jpeg"
+  />
+</template>
+
+<style scoped>
+  .v-lazy-image {
+    filter: blur(10px);
+    transition: filter 0.7s;
+  }
+  .v-lazy-image-loaded {
+    filter: blur(0);
+  }
+</style>
+```
+
+## 11. 调试 Vue template
+在Vue开发过程中, 经常会遇到template模板渲染时JavaScript变量出错的问题, 此时也许你会通过`console.log`来进行调试. 例如:
+``` html
+<template>
+  <h1>
+    {{ log(message) }}
+  </h1>
+</template>
+<script>
+methods: {
+  log(message) {
+    console.log(message);
+  }
+}
+</script>
+```
+
+每次调试模板渲染时, 都类似重复这样写, 可能会很无聊, 有没有更好的办法呢?
+
+在`Vue.prototype`原型链上添加一个自定义的方法.
+``` js
+// main.js
+Vue.prototype.$log = window.console.log;
+```
+至止, 我们可以在每个组件的模板中使用`$log`, 如果我们不想影响模板的渲染, 也可以:
+``` html
+<h1>
+  {{ log(message) || message }}
+</h1>
+```
+这样是不是很方便的调试模板了? 
+
+那延展一下, 有没有办法增加一个断点, 以调试模板渲染时, 查看相关联的变量?
+我们在使用模板时放入一个`debugger`. 
+``` html
+<h1>
+  {{ debugger }}
+</h1>
+```
+你会发现, 组件根本就没有编译模板. 有没有办法呢?
+
+我们可以尝试在模板中添加一个自执行的函数, 例如:
+``` html
+<h1>
+  {{ (function(){degugger;}) || message }}
+</h1>
+```
+
+此时, 我们将可以看到断点定位到了模板的渲染函数中了.
+![images.png](/coding/images/frontend/debugger1.png)
+
+此时的`_vm`, 就是我们组件的实例对象.
+
+检查编译的模板虽然很有意思, 但由于某些原因, 变量在被我们放在`debugger`后, 在chrome devtools的函数范围内变得不可用.
+
+修改下写法:
+``` html
+<h1>
+  {{ (function(){degugger; message}) || message }}
+</h1>
+```
+此时, 你就可以随心所欲了.
+![images.png](/coding/images/frontend/debugger2.png)
+
+
+## 12. Vue组件局部样式
+https://vuedose.tips/tips/the-importance-of-scoped-css-in-vue-js/
+
+## 13. Vue组件样式之 deep选择器
+https://vuedose.tips/tips/style-inner-elements-in-scoped-css-using-deep-selector-in-vue-js/
+
+## 14. 地理位置&货币
+https://vuedose.tips/tips/geolocated-currency-with-max-mind/
+
 
 ## 相关链接
 * [Vue](https://cn.vuejs.org/v2/api/index.html#Vue-observable)
