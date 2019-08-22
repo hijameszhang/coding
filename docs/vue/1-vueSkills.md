@@ -1,4 +1,4 @@
-# Vue 开发实战小技巧
+# Vue 开发技巧
 
 ## 1. 长列表性能优化
 在2.x版本中`Vue`会通过`Object.defineProperty`对数据进行劫持, 以实现双向数据绑定. 
@@ -211,7 +211,7 @@ export default {
 </script>
 ```
 
-## 5. 监听函数的
+## 5. 监听函数的生命周期函数
 有时, 需要在父组件监听子组件挂载后`mounted`, 做一些逻辑处理. 
 例如:
   加载远端组件时, 想抓取组件从远端加载到挂载的耗时. 
@@ -434,17 +434,7 @@ export default {
 };
 ```
 
-
-## 9. 路由懒加载
-有时候我们想把某个路由下的所有组件都打包在同个异步块 (chunk) 中。只需要使用 命名 [chunk](https://webpack.js.org/guides/code-splitting/)，一个特殊的注释语法来提供 chunk name (需要 Webpack > 2.4)。
-
-``` js
-const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue')
-const Bar = () => import(/* webpackChunkName: "group-foo" */ './Bar.vue')
-const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
-```
-
-## 10. 图片懒加载
+## 9. 图片懒加载
 
 [v-lazy-image](https://github.com/alexjoverm/v-lazy-image)图片懒加载组件.
 
@@ -484,6 +474,51 @@ Vue.use(VLazyImagePlugin);
   }
 </style>
 ```
+## 10. .sync 修饰符
+> 2.3.0+ 新增
+
+在有些情况下，我们可能需要对一个 `prop` 进行“双向绑定”。
+不幸的是，真正的双向绑定会带来维护上的问题，因为子组件可以修改父组件，且在父组件和子组件都没有明显的改动来源。
+
+这也是为什么我们推荐以 **update:myPropName** 的模式触发事件取而代之。
+
+举个例子，在一个包含 `title`的 prop属性的组件中，我们可以用以下方法表达对其赋新值的意图：
+``` js
+this.$emit('update:title', newTitle)
+```
+然后父组件可以监听那个事件并根据需要更新一个本地的数据属性。例如：
+``` html
+<text-document
+  v-bind:title="doc.title"
+  v-on:update:title="doc.title = $event"
+></text-document>
+```
+为了方便起见，我们为这种模式提供一个缩写，即 `.sync` 修饰符：
+``` html
+<text-document v-bind:title.sync="doc.title"></text-document>
+```
+::: danger
+带有 `.sync` 修饰符的 `v-bind` 不能和表达式一起使用. 
+
+例如: 
+   v-bind:title.sync=”doc.title + ‘!’” 是无效的。
+   
+取而代之的是，你只能提供你想要绑定的属性名，类似 v-model。
+:::
+
+当我们用一个对象同时设置多个 `prop` 的时候，也可以将这个 `.sync` 修饰符和 `v-bind` 配合使用：
+``` html
+<text-document v-bind.sync="doc"></text-document>
+```
+这样会把 doc 对象中的每一个属性 (如 title) 都作为一个独立的 prop 传进去，然后各自添加用于更新的 **v-on** 监听器。
+
+### 注意
+将 **v-bind.sync** 用在一个字面量的对象上. 
+
+例如: 
+`v-bind.sync=”{ title: doc.title }”`，是无法正常工作的. 
+
+因为在解析一个像这样的复杂表达式的时候，有很多边缘情况需要考虑。
 
 ## 11. 调试 Vue template
 在Vue开发过程中, 经常会遇到template模板渲染时JavaScript变量出错的问题, 此时也许你会通过`console.log`来进行调试. 例如:
@@ -547,17 +582,99 @@ Vue.prototype.$log = window.console.log;
 </h1>
 ```
 此时, 你就可以随心所欲了.
+
 ![images.png](/coding/images/frontend/debugger2.png)
 
 
 ## 12. Vue组件局部样式
-https://vuedose.tips/tips/the-importance-of-scoped-css-in-vue-js/
+Vue中style标签的scoped属性表示它的样式只作用于当前模块，是**样式私有化**, 设计的初衷就是让样式变得不可修改. 
+
+渲染的规则/原理：
+* 给HTML的DOM节点添加一个 不重复的data属性 来表示 唯一性
+* 在对应的 CSS选择器 末尾添加一个当前组件的 data属性选择器来私有化样式，如：.demo[data-v-2311c06a]{}
+* 若组件内部包含其他组件，只会给其他组件的最外层标签加上当前组件的 data-v 属性
+
+例如, 如下代码所示:
+``` html
+<template>
+  <div class="demo">
+    <span class="content">
+      Vue.js scoped
+    </span>
+  </div>
+</template>
+
+<style lang="less" scoped>
+  .demo{
+    font-size: 14px;
+    .content{
+      color: red;
+    }
+  }
+</style>
+
+```
+
+浏览器渲染后的代码：
+``` html
+<div data-v-fed36922>
+  Vue.js scoped
+</div>
+<style type="text/css">
+.demo[data-v-039c5b43] {
+  font-size: 14px;
+}
+.demo .content[data-v-039c5b43] {
+  color: red;
+}
+</style>
+```
+
+::: tip 注意
+添加scoped属性后, 父组件无法修改子组件的样式. 
+:::
 
 ## 13. Vue组件样式之 deep选择器
-https://vuedose.tips/tips/style-inner-elements-in-scoped-css-using-deep-selector-in-vue-js/
+如上例中, 若想在父组件中修改子组件的样式, 怎么办呢? 
 
-## 14. 地理位置&货币
-https://vuedose.tips/tips/geolocated-currency-with-max-mind/
+* 1.采用全局属性和局部属性混合的方式
+* 2.每个组件在最外层添加一个唯一的class区分不同的组件
+* 3.使用深层选择器deep
+
+这里我们主要讲解使用`deep`修改子组件的样式. 将上例的代码修改为:
+``` html
+<template>
+  <div class="demo">
+    <span class="content">
+      Vue.js scoped
+    </span>
+  </div>
+</template>
+
+<style lang="less" scoped>
+  .demo{
+    font-size: 14px;
+  }
+  .demo /deep/ .content{
+    color: blue;
+  }
+</style>
+
+```
+
+最终style编译后的输出为:
+``` html
+<style type="text/css">
+.demo[data-v-039c5b43] {
+  font-size: 14px;
+}
+.demo[data-v-039c5b43] .content {
+  color: blue;
+}
+</style>
+```
+
+从编译可以看出, 就是`.content`后有无添加CSS属性`data-v-xxx`的区别, 属性CSS选择器权重问题的同学, 对此应该立即明白了吧!
 
 
 ## 相关链接
