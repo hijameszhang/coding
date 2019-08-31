@@ -1,7 +1,7 @@
 # Vue 训练大纲
 ## 现代JavaScript ES6 & 更高版本
 ### 简介
-1.为什么ES6和更高版本被认为是现代JavaScript?  (2 minutes)
+1. 为什么ES6和更高版本被认为是现代JavaScript?  (2 minutes)
 2. var, let, const的异同  (5 minutes)
 3. 在ES6中如何使用 `=>`箭头函数 (9 minutes)
 4. ES6 模板字符串 (6 minutes)
