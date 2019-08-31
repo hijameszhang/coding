@@ -12,6 +12,7 @@
 9. 如何在ES6中创建类 (5 minutes)
 10. 了解类继承在JavaScript ES6中的工作原理 (5 minutes)
 
+
 ### ES6基础知识
 1. Promise
 2. Asnyc/Await
@@ -32,17 +33,39 @@
 8. 异步加载远端组件 (9 minutes)
 
 ## Vue组件知识
+### 起步
+1. 学习方法介绍
+2. 使用Vue编写Hello World
+3. 使用Vue开发TodoList
+4. MVVM设计模式
+
+### 小案例
+1. 组件化思维修改TodoList
+2. 简单的父子组件传值
+
 ### 基础
 1. 什么是组件? (3 minutes)
 2. 组件模板(template) (2 minutes)
 3. 利用props重复使用组件 (7 minutes)
-4. 嵌套组件 (2 minutes)
-5. 全局组件 & 本地组件 (3 minutes)
+4. 计算属性，方法与侦听器 (8 minutes)
+5. 嵌套组件 (2 minutes)
+6. 全局组件 & 本地组件 (3 minutes)
 
 ### 进阶
 1. 组件命名最佳实践 (7 minutes)
 2. 组件生命周期钩子函数 (2 minutes)
-3. 组件插槽(slots) (8 minutes)
+5. 计算属性的setter和getter
+6. Vue中的set方法
+
+
+### Vue中的动画
+* Vue中的CSS动画原理
+* Vue中使用animate.css库
+* Vue中同时使用过渡与动画效果
+* Vue中使用Velocity.js库
+* Vue中多组件和列表过度
+* Vue中动画的封装
+
 
 ### 实战
 1. 创建一个User Profile组件 (8 minutes)
