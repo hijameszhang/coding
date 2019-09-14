@@ -101,6 +101,10 @@ module.exports = {
     lastUpdated: true,
 
     nav : [
+        {
+          text: 'Vue',
+          link: '/vue/'
+        },
         { 
           text: 'Web', 
           link: '/css/',
