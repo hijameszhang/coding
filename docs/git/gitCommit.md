@@ -47,8 +47,9 @@ subject 是commit目的的一个简短描述, 一般不超过50个字符
 ### footer
 * 当有非兼容修改时必须在这里描述清楚
 * 关闭issue或是链接到相关文档, 如: Closes #111923, Closes #93201
-## validate-commit-msg
-用于检查项目的 Commit message 是否符合格式。
+## validate-commit-msg ghooks
+validate-commit-msg [Github](https://github.com/conventional-changelog-archived-repos/validate-commit-msg)于检查项目的 Commit message 是否符合格式。
+ghooks [Github](https://github.com/ghooks-org/ghooks) Simple git hooks
 
 ### 安装
 ```
