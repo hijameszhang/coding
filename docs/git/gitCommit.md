@@ -200,3 +200,36 @@ npm install --save-dev pre-commit
   }
 }
 ```
+## 生成change log
+如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成（例1，例2，例3）。
+
+生成的文档包括以下三个部分。
+* New features
+* Bug fixes
+* Breaking changes.
+
+每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。
+
+conventional-changelog 就是生成 Change log 的工具，运行下面的命令即可。
+```
+$ npm install -g conventional-changelog
+$ cd my-project
+$ conventional-changelog -p angular -i CHANGELOG.md -w
+```
+上面命令不会覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。
+
+如果你想生成所有发布的 Change log，要改为运行下面的命令。
+```
+$ conventional-changelog -p angular -i CHANGELOG.md -w -r 0
+```
+为了方便使用，可以将其写入package.json的scripts字段。
+``` json
+{
+  "scripts": {
+   "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0"
+}}
+```
+以后，直接运行下面的命令即可。
+```
+$ npm run changelog
+```
