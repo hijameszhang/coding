@@ -47,7 +47,65 @@ subject 是commit目的的一个简短描述, 一般不超过50个字符
 ### footer
 * 当有非兼容修改时必须在这里描述清楚
 * 关闭issue或是链接到相关文档, 如: Closes #111923, Closes #93201
+## validate-commit-msg
+用于检查项目的 Commit message 是否符合格式。
 
+### 安装
+```
+npm install --save-dev validate-commit-msg`
+npm install ghooks --save-dev
+```
+### 配置
+在项目的根目录下, 新建一个名为`.vcmrc`的文件, 并输入以下内容:
+``` json
+{
+  "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"],
+  "scope": {
+    "required": false,
+    "allowed": ["*"],
+    "validate": false,
+    "multiple": false
+  },
+  "warnOnFail": false,
+  "maxSubjectLength": 100,
+  "subjectPattern": ".+",
+  "subjectPatternErrorMsg": "subject does not match subject pattern!",
+  "helpMessage": "",
+  "autoFix": false
+}
+```
+
+然后, 在`package.json`中添加如下配置
+``` json
+{
+  …
+  "config": {
+    "ghooks": {
+      "pre-commit": "gulp lint",
+      "commit-msg": "validate-commit-msg",
+      "pre-push": "make test",
+      "post-merge": "npm install",
+      "post-rewrite": "npm install",
+      …
+    }
+  }
+  …
+}
+```
+可以根据项目的需要来添加, 例如:
+``` json
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    }
+  }
+```
+### 验证
+每次git commit的时候，这个脚本就会自动检查 Commit message 是否合格。如果不合格，就会报错。
+```
+$ git add -A 
+$ git commit -m "edit markdown" INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" ! was: edit markdown
+```
 ## 使用commitizen 
 工具commitizen可以帮忙我们写出规范的commit message.   [Github](https://github.com/commitizen/cz-cli)
 

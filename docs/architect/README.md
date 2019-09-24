@@ -36,7 +36,7 @@
 
 * 简单的集中式
 * 基于功能分支的工作流
-* Git Flow 🔥
+* Git Flow 
 * Fork/Pull Request 工作流
 
 #### git提交信息规范
