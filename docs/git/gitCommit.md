@@ -110,14 +110,32 @@ $ git commit -m "edit markdown" INVALID COMMIT MSG: does not match "<type>(<scop
 ## 使用commitizen 
 工具commitizen可以帮忙我们写出规范的commit message.   [Github](https://github.com/commitizen/cz-cli)
 
-### 安装
+### 全局安装
 ```
 > npm install -g commitizen
 ```
-### 在项目中使用通用commit规范
-```
+#### 初始化及使用
+···
 > commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
+
+以上命令将执行以下3个动作:
+* 安装cz-conventional-changelog依赖包
+* 保存依赖包信息到package.json的dependencies七devDependencies中
+* 添加config.commitizen字段到package.json中, 可能的配置如下:
+``` json
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+```
+
+::: tip
+如果以前使用过cz-conventional-changelog, 在末尾添加`--force`参数, 强制更新package.json中的配置.
+更多信息可以通过命令`commitizen help`获得
+:::
+
 接下来我们就可以愉快的使用`git cz`命令来代替`git commit`命令了.
 
 ```
@@ -138,6 +156,27 @@ Line 1 will be cropped at 100 characters. All other lines will be wrapped after 
  how to use git well
 ? Does this change affect any open issues? No
 ```
+### 本地安装
+> 本地安装可以确保项目的所有开发者都能执行相同的commitizen版本.
+
+```
+npm install commitizen --save-dev
+npm commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+或者
+```
+yarn add commitizen --dev
+yarn commitizen init cz-conventional-changelog --dev --save-exact
+```
+
+### 添加配置&使用
+手动添加如下配置至package.json文件中:
+``` json
+  "script": {
+    "commit": "git-cz"
+  }
+```
+当需要commit文件时, 执行`npm run commit`即可.
 
 ## 使用gitmoji
 gitmoji 和 commitizen的作用都是帮助我们写出规范的commit message，不过gitmoji有更好玩的 moji表情。（ 用moji来表示type ） [Github](https://github.com/carloscuesta/gitmoji-cli)
@@ -209,7 +248,6 @@ npm install --save-dev pre-commit
 * Breaking changes.
 
 每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。
-
 conventional-changelog 就是生成 Change log 的工具，运行下面的命令即可。
 ```
 $ npm install -g conventional-changelog

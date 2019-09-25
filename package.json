@@ -7,12 +7,14 @@
     "build": "vuepress build docs",
     "deploy": "yarn build && ./deploy.bat",
     "koa": "nodemon ./server/koa/index.js",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+    "commit": "git-cz"
   },
   "repository": "https://github.com/hijameszhang/coding.git",
   "author": "jameszhang <hellojameszhang@163.com>",
   "license": "MIT",
   "devDependencies": {
+    "commitizen": "^4.0.3",
     "conventional-changelog": "^3.1.10",
     "cz-conventional-changelog": "^2.1.0",
     "ghooks": "^2.0.4",
