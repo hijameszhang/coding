@@ -69,7 +69,7 @@ function updateSlideBar() {
         sidebar[`/${fileName}/`] = [
           {
             title: title,
-            collapsable: true,
+            collapsable: false,
             children: genSidebarChildren(files).sort()
           }
         ]
