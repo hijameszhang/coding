@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue &amp; TypeScript | Web Developer</title>
+    <meta name="description" content="Web developer">
+    <link rel="shortcut icon" type="icon" href="/coding/coding/images/logo/my.jpg">
+    
+    <link rel="preload" href="/coding/assets/css/0.styles.9a06647f.css" as="style"><link rel="preload" href="/coding/assets/js/app.bda66ca1.js" as="script"><link rel="preload" href="/coding/assets/js/2.5301b3be.js" as="script"><link rel="preload" href="/coding/assets/js/54.9bb24747.js" as="script"><link rel="prefetch" href="/coding/assets/js/10.65e9a4bb.js"><link rel="prefetch" href="/coding/assets/js/11.9e3fd327.js"><link rel="prefetch" href="/coding/assets/js/12.45322000.js"><link rel="prefetch" href="/coding/assets/js/13.91278df4.js"><link rel="prefetch" href="/coding/assets/js/14.24d512d2.js"><link rel="prefetch" href="/coding/assets/js/15.482cbe32.js"><link rel="prefetch" href="/coding/assets/js/16.f2696b58.js"><link rel="prefetch" href="/coding/assets/js/17.4caa8eae.js"><link rel="prefetch" href="/coding/assets/js/18.c623d12e.js"><link rel="prefetch" href="/coding/assets/js/19.ad7b5a63.js"><link rel="prefetch" href="/coding/assets/js/20.effcc9e9.js"><link rel="prefetch" href="/coding/assets/js/21.2ddb2a1f.js"><link rel="prefetch" href="/coding/assets/js/22.70c9ac91.js"><link rel="prefetch" href="/coding/assets/js/23.9f5bec45.js"><link rel="prefetch" href="/coding/assets/js/24.2c097041.js"><link rel="prefetch" href="/coding/assets/js/25.ef69a840.js"><link rel="prefetch" href="/coding/assets/js/26.33c71d45.js"><link rel="prefetch" href="/coding/assets/js/27.9b42ef41.js"><link rel="prefetch" href="/coding/assets/js/28.e1cfa454.js"><link rel="prefetch" href="/coding/assets/js/29.fd9a92f3.js"><link rel="prefetch" href="/coding/assets/js/3.070fe044.js"><link rel="prefetch" href="/coding/assets/js/30.0204da64.js"><link rel="prefetch" href="/coding/assets/js/31.fa7024e0.js"><link rel="prefetch" href="/coding/assets/js/32.67999162.js"><link rel="prefetch" href="/coding/assets/js/33.96063c19.js"><link rel="prefetch" href="/coding/assets/js/34.7efda74e.js"><link rel="prefetch" href="/coding/assets/js/35.a871816e.js"><link rel="prefetch" href="/coding/assets/js/36.37f69431.js"><link rel="prefetch" href="/coding/assets/js/37.26e9bb20.js"><link rel="prefetch" href="/coding/assets/js/38.33dcec0e.js"><link rel="prefetch" href="/coding/assets/js/39.b3a3dae7.js"><link rel="prefetch" href="/coding/assets/js/4.8789dbc3.js"><link rel="prefetch" href="/coding/assets/js/40.ac4acda2.js"><link rel="prefetch" href="/coding/assets/js/41.7e49bde6.js"><link rel="prefetch" href="/coding/assets/js/42.666dbd62.js"><link rel="prefetch" href="/coding/assets/js/43.8976499b.js"><link rel="prefetch" href="/coding/assets/js/44.c241484b.js"><link rel="prefetch" href="/coding/assets/js/45.86cf049d.js"><link rel="prefetch" href="/coding/assets/js/46.f21f338c.js"><link rel="prefetch" href="/coding/assets/js/47.289d9933.js"><link rel="prefetch" href="/coding/assets/js/48.57af0318.js"><link rel="prefetch" href="/coding/assets/js/49.29d5599b.js"><link rel="prefetch" href="/coding/assets/js/5.32ebd2a0.js"><link rel="prefetch" href="/coding/assets/js/50.350b242c.js"><link rel="prefetch" href="/coding/assets/js/51.1cfc7d3f.js"><link rel="prefetch" href="/coding/assets/js/52.07abf413.js"><link rel="prefetch" href="/coding/assets/js/53.587f011d.js"><link rel="prefetch" href="/coding/assets/js/55.7850accb.js"><link rel="prefetch" href="/coding/assets/js/56.d02b4a21.js"><link rel="prefetch" href="/coding/assets/js/57.099fab41.js"><link rel="prefetch" href="/coding/assets/js/58.13ce710b.js"><link rel="prefetch" href="/coding/assets/js/59.28b0136e.js"><link rel="prefetch" href="/coding/assets/js/6.a94c891c.js"><link rel="prefetch" href="/coding/assets/js/60.022fbb2c.js"><link rel="prefetch" href="/coding/assets/js/61.00fe7075.js"><link rel="prefetch" href="/coding/assets/js/62.6dc716f0.js"><link rel="prefetch" href="/coding/assets/js/63.12b12c53.js"><link rel="prefetch" href="/coding/assets/js/64.2db53cef.js"><link rel="prefetch" href="/coding/assets/js/65.0d7c8758.js"><link rel="prefetch" href="/coding/assets/js/66.010151f5.js"><link rel="prefetch" href="/coding/assets/js/67.8c86ff96.js"><link rel="prefetch" href="/coding/assets/js/7.99d9b27b.js"><link rel="prefetch" href="/coding/assets/js/8.309b23b6.js"><link rel="prefetch" href="/coding/assets/js/9.1df69252.js">
+    <link rel="stylesheet" href="/coding/assets/css/0.styles.9a06647f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/coding/" class="home-link router-link-active"><img src="/coding/images/logo/my.jpg" alt="Web Developer" class="logo"> <span class="site-name can-hide">Web Developer</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/coding/vue/" class="nav-link">Vue</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Web</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/css/" class="nav-link">CSS</a></li><li class="dropdown-item"><!----> <a href="/coding/html/" class="nav-link">HTML</a></li><li class="dropdown-item"><!----> <a href="/coding/js/" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/coding/typescript/" class="nav-link router-link-active">TypeScript</a></li><li class="dropdown-item"><!----> <a href="/coding/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><!----> <a href="/coding/nodejs/" class="nav-link">Node.js</a></li><li class="dropdown-item"><!----> <a href="/coding/web/" class="nav-link">Web</a></li><li class="dropdown-item"><!----> <a href="/coding/interview/" class="nav-link">Interview</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Tools</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/git/" class="nav-link">Git</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">BusinessManagement</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/trainer/" class="nav-link">讲师</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/hijameszhang/coding" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/coding/vue/" class="nav-link">Vue</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Web</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/css/" class="nav-link">CSS</a></li><li class="dropdown-item"><!----> <a href="/coding/html/" class="nav-link">HTML</a></li><li class="dropdown-item"><!----> <a href="/coding/js/" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/coding/typescript/" class="nav-link router-link-active">TypeScript</a></li><li class="dropdown-item"><!----> <a href="/coding/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><!----> <a href="/coding/nodejs/" class="nav-link">Node.js</a></li><li class="dropdown-item"><!----> <a href="/coding/web/" class="nav-link">Web</a></li><li class="dropdown-item"><!----> <a href="/coding/interview/" class="nav-link">Interview</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Tools</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/git/" class="nav-link">Git</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">BusinessManagement</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/trainer/" class="nav-link">讲师</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/hijameszhang/coding" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Typescript</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/coding/typescript/1-quickStart.html" class="sidebar-link">快速上手</a></li><li><a href="/coding/typescript/2-tsBasic.html" class="sidebar-link">TypeScript学习手册</a></li><li><a href="/coding/typescript/3-javascriptTranser.html" class="sidebar-link">JavaScript迁移</a></li><li><a href="/coding/typescript/4-vue-webpack-ts.html" class="active sidebar-link">Vue &amp; TypeScript</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/typescript/4-vue-webpack-ts.html#环境准备" class="sidebar-link">环境准备</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/typescript/4-vue-webpack-ts.html#node-js-typescript-安装" class="sidebar-link">Node.js &amp; TypeScript 安装</a></li><li class="sidebar-sub-header"><a href="/coding/typescript/4-vue-webpack-ts.html#vue-cli-安装" class="sidebar-link">@vue/cli 安装</a></li><li class="sidebar-sub-header"><a href="/coding/typescript/4-vue-webpack-ts.html#创建工程" class="sidebar-link">创建工程</a></li><li class="sidebar-sub-header"><a href="/coding/typescript/4-vue-webpack-ts.html#工程解析" class="sidebar-link">工程解析</a></li><li class="sidebar-sub-header"><a href="/coding/typescript/4-vue-webpack-ts.html#工程改造" class="sidebar-link">工程改造</a></li></ul></li></ul></li><li><a href="/coding/typescript/5-react-webpack.html" class="sidebar-link">React &amp; Webpack</a></li><li><a href="/coding/typescript/6-project-config.html" class="sidebar-link">项目配置</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue-typescript">Vue &amp; TypeScript</h1> <h2 id="环境准备">环境准备</h2> <h3 id="node-js-typescript-安装">Node.js &amp; TypeScript 安装</h3> <p>详情请参阅: <a href="/coding/typescript/1-quickStart.html">TypeScript:快速上手</a></p> <h3 id="vue-cli-安装">@vue/cli 安装</h3> <div class="language- extra-class"><pre class="language-text"><code>&gt; npm -g install @vue/cli
+</code></pre></div><p>或者</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; yarn global add @vue/cli
+</code></pre></div><h3 id="创建工程">创建工程</h3> <div class="language- extra-class"><pre class="language-text"><code>E:\github&gt;vue create vue-typescript-demo
+Vue CLI v3.9.2
+? Please pick a preset: Manually select features
+? Check the features needed for your project: Babel, TS, Router, Vuex, CSS Pre-processors, Linter, Unit
+? Use class-style component syntax? Yes
+? Use Babel alongside TypeScript (required for modern mode, auto-detected polyfills, transpiling JSX)? Yes
+? Use history mode for router? (Requires proper server setup for index fallback in production) No
+? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by default): Less
+? Pick a linter / formatter config: TSLint
+? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)Lint on save
+? Pick a unit testing solution: Jest
+? Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In dedicated config files
+? Save this as a preset for future projects? No
+
+
+Vue CLI v3.9.2
+✨  Creating project in E:\github\vue-typescript-demo.
+�  Initializing git repository...
+⚙  Installing CLI plugins. This might take a while...
+
+yarn install v1.16.0
+info No lockfile found.
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+info fsevents@1.2.9: The platform &quot;win32&quot; is incompatible with this module.
+info &quot;fsevents@1.2.9&quot; is an optional dependency and failed compatibility check. Excluding it from installation.
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+
+success Saved lockfile.
+Done in 78.80s.
+�  Invoking generators...
+�  Installing additional dependencies...
+
+yarn install v1.16.0
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+info fsevents@1.2.9: The platform &quot;win32&quot; is incompatible with this module.
+info &quot;fsevents@1.2.9&quot; is an optional dependency and failed compatibility check. Excluding it from installation.
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+
+success Saved lockfile.
+Done in 23.86s.
+⚓  Running completion hooks...
+
+�  Generating README.md...
+
+�  Successfully created project vue-typescript-demo111.
+�  Get started with the following commands:
+
+ $ cd vue-typescript-demo
+ $ yarn serve
+</code></pre></div><p>工程创建成功后, 进入到目录<code>vue-typescript-demo</code>, 运行命令: <code>yarn serve</code>. 即可通过<code>http://localhost:8080/</code>查看到本地的运行页面.</p> <h3 id="工程解析">工程解析</h3> <div class="language- extra-class"><pre class="language-text"><code>|-vue-typescript-demo
+  |-public                    // 静态资源文件                
+    |-favicon.ico
+    |-index.html
+  |-src                       // 源代码
+    |-assets                  // 资源文件目录 
+      |-logo.png
+    |-components              // 公用组件
+      |-HelloWorld.vue
+    |-views                   // 视图组件
+      |-About.vue
+      |-Home.vue
+    |-App.vue                 // 根组件
+    |-main.ts                 // 入口
+    |-route.ts                // 路由配置
+    |-shims-tsx.d.ts          // tsx模块注入
+    |-shims-vue.d.ts          // vue模块注入
+    |-store.ts                // vuex配置
+  |-tests                     // 测试文件目录
+    |-unit                    // 单元测试文件目录
+      |-example.spec.ts
+  |-.browserslistrc           // 
+  |-.gitignore                // git忽略文件
+  |-babel.config.js           // babel配置
+  |-jest.config.js            // jest配置
+  |-package.json              // 
+  |-postcss.config.js         // postcss配置
+  |-tsconfig.json             // ts配置
+  |-tslint.json               // tslint相关配置
+  |-yarn.lock
+
+</code></pre></div><h3 id="工程改造">工程改造</h3> <p>如上创建的工程, 在实际项目当中, 可能无法适用, 这里稍微做些改造</p> <div class="language- extra-class"><pre class="language-text"><code>|-vue-typescript-demo
+  |-public                    // 静态资源文件                
+    |-favicon.ico
+    |-index.html
+  |-src                       // 源代码
+    |-assets                  // 资源文件目录 
+      |-logo.png
+    |-components              // 公用组件
+      |-HelloWorld.vue
+    |-views                   // 视图组件
+      |-About.vue
+      |-Home.vue
+    |-App.vue                 // 根组件
+    |-main.ts                 // 入口
+    |-route                   // 路由配置
+      |-index.ts
+    |-shims-tsx.d.ts          // tsx模块注入
+    |-shims-vue.d.ts          // vue模块注入
+    |-store                   // vuex配置
+      |-index.ts
+    |-service                 // 服务相关
+    |-utils                   // 工具方法
+  |-tests                     // 测试文件目录
+    |-unit                    // 单元测试文件目录
+      |-example.spec.ts
+  |-.browserslistrc           // 
+  |-.gitignore                // git忽略文件相关配置
+  |-babel.config.js           // babel配置
+  |-jest.config.js            // jest配置
+  |-package.json              // 
+  |-postcss.config.js         // postcss配置
+  |-tsconfig.json             // ts配置
+  |-tslint.json               // tslint相关配置
+  |-yarn.lock
+
+</code></pre></div><p>// to do</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">7/15/2019, 10:12:20 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/coding/typescript/3-javascriptTranser.html" class="prev">
+          JavaScript迁移
+        </a></span> <span class="next"><a href="/coding/typescript/5-react-webpack.html">
+          React &amp; Webpack
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/coding/assets/js/app.bda66ca1.js" defer></script><script src="/coding/assets/js/2.5301b3be.js" defer></script><script src="/coding/assets/js/54.9bb24747.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vuepress搭建静态博客 | Web Developer</title>
+    <meta name="description" content="Web developer">
+    <link rel="shortcut icon" type="icon" href="/coding/coding/images/logo/my.jpg">
+    
+    <link rel="preload" href="/coding/assets/css/0.styles.9a06647f.css" as="style"><link rel="preload" href="/coding/assets/js/app.bda66ca1.js" as="script"><link rel="preload" href="/coding/assets/js/2.5301b3be.js" as="script"><link rel="preload" href="/coding/assets/js/63.12b12c53.js" as="script"><link rel="prefetch" href="/coding/assets/js/10.65e9a4bb.js"><link rel="prefetch" href="/coding/assets/js/11.9e3fd327.js"><link rel="prefetch" href="/coding/assets/js/12.45322000.js"><link rel="prefetch" href="/coding/assets/js/13.91278df4.js"><link rel="prefetch" href="/coding/assets/js/14.24d512d2.js"><link rel="prefetch" href="/coding/assets/js/15.482cbe32.js"><link rel="prefetch" href="/coding/assets/js/16.f2696b58.js"><link rel="prefetch" href="/coding/assets/js/17.4caa8eae.js"><link rel="prefetch" href="/coding/assets/js/18.c623d12e.js"><link rel="prefetch" href="/coding/assets/js/19.ad7b5a63.js"><link rel="prefetch" href="/coding/assets/js/20.effcc9e9.js"><link rel="prefetch" href="/coding/assets/js/21.2ddb2a1f.js"><link rel="prefetch" href="/coding/assets/js/22.70c9ac91.js"><link rel="prefetch" href="/coding/assets/js/23.9f5bec45.js"><link rel="prefetch" href="/coding/assets/js/24.2c097041.js"><link rel="prefetch" href="/coding/assets/js/25.ef69a840.js"><link rel="prefetch" href="/coding/assets/js/26.33c71d45.js"><link rel="prefetch" href="/coding/assets/js/27.9b42ef41.js"><link rel="prefetch" href="/coding/assets/js/28.e1cfa454.js"><link rel="prefetch" href="/coding/assets/js/29.fd9a92f3.js"><link rel="prefetch" href="/coding/assets/js/3.070fe044.js"><link rel="prefetch" href="/coding/assets/js/30.0204da64.js"><link rel="prefetch" href="/coding/assets/js/31.fa7024e0.js"><link rel="prefetch" href="/coding/assets/js/32.67999162.js"><link rel="prefetch" href="/coding/assets/js/33.96063c19.js"><link rel="prefetch" href="/coding/assets/js/34.7efda74e.js"><link rel="prefetch" href="/coding/assets/js/35.a871816e.js"><link rel="prefetch" href="/coding/assets/js/36.37f69431.js"><link rel="prefetch" href="/coding/assets/js/37.26e9bb20.js"><link rel="prefetch" href="/coding/assets/js/38.33dcec0e.js"><link rel="prefetch" href="/coding/assets/js/39.b3a3dae7.js"><link rel="prefetch" href="/coding/assets/js/4.8789dbc3.js"><link rel="prefetch" href="/coding/assets/js/40.ac4acda2.js"><link rel="prefetch" href="/coding/assets/js/41.7e49bde6.js"><link rel="prefetch" href="/coding/assets/js/42.666dbd62.js"><link rel="prefetch" href="/coding/assets/js/43.8976499b.js"><link rel="prefetch" href="/coding/assets/js/44.c241484b.js"><link rel="prefetch" href="/coding/assets/js/45.86cf049d.js"><link rel="prefetch" href="/coding/assets/js/46.f21f338c.js"><link rel="prefetch" href="/coding/assets/js/47.289d9933.js"><link rel="prefetch" href="/coding/assets/js/48.57af0318.js"><link rel="prefetch" href="/coding/assets/js/49.29d5599b.js"><link rel="prefetch" href="/coding/assets/js/5.32ebd2a0.js"><link rel="prefetch" href="/coding/assets/js/50.350b242c.js"><link rel="prefetch" href="/coding/assets/js/51.1cfc7d3f.js"><link rel="prefetch" href="/coding/assets/js/52.07abf413.js"><link rel="prefetch" href="/coding/assets/js/53.587f011d.js"><link rel="prefetch" href="/coding/assets/js/54.9bb24747.js"><link rel="prefetch" href="/coding/assets/js/55.7850accb.js"><link rel="prefetch" href="/coding/assets/js/56.d02b4a21.js"><link rel="prefetch" href="/coding/assets/js/57.099fab41.js"><link rel="prefetch" href="/coding/assets/js/58.13ce710b.js"><link rel="prefetch" href="/coding/assets/js/59.28b0136e.js"><link rel="prefetch" href="/coding/assets/js/6.a94c891c.js"><link rel="prefetch" href="/coding/assets/js/60.022fbb2c.js"><link rel="prefetch" href="/coding/assets/js/61.00fe7075.js"><link rel="prefetch" href="/coding/assets/js/62.6dc716f0.js"><link rel="prefetch" href="/coding/assets/js/64.2db53cef.js"><link rel="prefetch" href="/coding/assets/js/65.0d7c8758.js"><link rel="prefetch" href="/coding/assets/js/66.010151f5.js"><link rel="prefetch" href="/coding/assets/js/67.8c86ff96.js"><link rel="prefetch" href="/coding/assets/js/7.99d9b27b.js"><link rel="prefetch" href="/coding/assets/js/8.309b23b6.js"><link rel="prefetch" href="/coding/assets/js/9.1df69252.js">
+    <link rel="stylesheet" href="/coding/assets/css/0.styles.9a06647f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/coding/" class="home-link router-link-active"><img src="/coding/images/logo/my.jpg" alt="Web Developer" class="logo"> <span class="site-name can-hide">Web Developer</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/coding/vue/" class="nav-link router-link-active">Vue</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Web</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/css/" class="nav-link">CSS</a></li><li class="dropdown-item"><!----> <a href="/coding/html/" class="nav-link">HTML</a></li><li class="dropdown-item"><!----> <a href="/coding/js/" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/coding/typescript/" class="nav-link">TypeScript</a></li><li class="dropdown-item"><!----> <a href="/coding/vue/" class="nav-link router-link-active">Vue</a></li><li class="dropdown-item"><!----> <a href="/coding/nodejs/" class="nav-link">Node.js</a></li><li class="dropdown-item"><!----> <a href="/coding/web/" class="nav-link">Web</a></li><li class="dropdown-item"><!----> <a href="/coding/interview/" class="nav-link">Interview</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Tools</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/git/" class="nav-link">Git</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">BusinessManagement</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/trainer/" class="nav-link">讲师</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/hijameszhang/coding" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/coding/vue/" class="nav-link router-link-active">Vue</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Web</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/css/" class="nav-link">CSS</a></li><li class="dropdown-item"><!----> <a href="/coding/html/" class="nav-link">HTML</a></li><li class="dropdown-item"><!----> <a href="/coding/js/" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/coding/typescript/" class="nav-link">TypeScript</a></li><li class="dropdown-item"><!----> <a href="/coding/vue/" class="nav-link router-link-active">Vue</a></li><li class="dropdown-item"><!----> <a href="/coding/nodejs/" class="nav-link">Node.js</a></li><li class="dropdown-item"><!----> <a href="/coding/web/" class="nav-link">Web</a></li><li class="dropdown-item"><!----> <a href="/coding/interview/" class="nav-link">Interview</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Tools</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/git/" class="nav-link">Git</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">BusinessManagement</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/coding/trainer/" class="nav-link">讲师</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/hijameszhang/coding" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/coding/vue/0-vue-training-topic.html" class="sidebar-link">Vue 训练大纲</a></li><li><a href="/coding/vue/1-vueSkills.html" class="sidebar-link">Vue 开发技巧</a></li><li><a href="/coding/vue/2-vuex-skills.html" class="sidebar-link">Vuex 开发技巧</a></li><li><a href="/coding/vue/3-vue-router-skills.html" class="sidebar-link">vue-router 开发技巧</a></li><li><a href="/coding/vue/vuepressToGithub.html" class="active sidebar-link">vuepress搭建静态博客</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#vuepress简介" class="sidebar-link">VuePress简介</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#vuepress特性" class="sidebar-link">VuePress特性</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#环境搭建" class="sidebar-link">环境搭建</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#vuepress安装条件" class="sidebar-link">VuePress安装条件</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#全局安装vuepress" class="sidebar-link">全局安装VuePress</a></li></ul></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#项目编辑" class="sidebar-link">项目编辑</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#创建项目目录" class="sidebar-link">创建项目目录</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#初始化项目" class="sidebar-link">初始化项目</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#新建docs文件夹" class="sidebar-link">新建docs文件夹</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#设置package-json" class="sidebar-link">设置package.json</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#创建-vuepress目录" class="sidebar-link">创建.vuepress目录</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#创建config-js" class="sidebar-link">创建config.js</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#创建public文件夹" class="sidebar-link">创建public文件夹</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#项目目录结构" class="sidebar-link">项目目录结构</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#网站信息" class="sidebar-link">网站信息</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#pwa配置" class="sidebar-link">PWA配置</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#自定义页面" class="sidebar-link">自定义页面</a></li></ul></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#部署上线" class="sidebar-link">部署上线</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#创建一个deploy-bat" class="sidebar-link">创建一个deploy.bat</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#设置package-json-2" class="sidebar-link">设置package.json</a></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#github-pages-设置" class="sidebar-link">Github Pages 设置</a></li></ul></li><li class="sidebar-sub-header"><a href="/coding/vue/vuepressToGithub.html#遇到的问题" class="sidebar-link">遇到的问题</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vuepress搭建静态博客">vuepress搭建静态博客</h1> <h2 id="vuepress简介">VuePress简介</h2> <p>VuePress是以Vue驱动的静态网站生成器，是一个由Vue、Vue Router和webpack驱动的单页应用。在VuePress中，你可以使用Markdown编写文档，然后生成网页，每一个由VuePress生成的页面都带有预渲染好的HTML，也因此具有非常好的加载性能和搜索引擎优化。同时，一旦页面被加载，Vue将接管这些静态内容，并将其转换成一个完整的单页应用，其他的页面则会只在用户浏览到的时候才按需加载。</p> <p>详情请看 <a href="https://vuepress.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">VuePress官方文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h2 id="vuepress特性">VuePress特性</h2> <ul><li>为技术文档而优化的内置Markdown拓展</li> <li>在Markdown文件中使用Vue组件的能力</li> <li>Vue驱动的自定义主题系统</li> <li>自动生成Service Worker(支持PWA)</li> <li>Google Analytics集成</li> <li>基于Git的&quot;最后更新时间&quot;</li> <li>多语言支持</li> <li>响应式布局</li></ul> <h2 id="环境搭建">环境搭建</h2> <h3 id="vuepress安装条件">VuePress安装条件</h3> <ul><li><code>Yarn</code>或<code>npm</code></li> <li>Node.js version &gt;=8。</li></ul> <h3 id="全局安装vuepress">全局安装VuePress</h3> <div class="language- extra-class"><pre class="language-text"><code>&gt; yarn global add vuepress
+</code></pre></div><p>或者：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; npm install -g vuepress
+</code></pre></div><h2 id="项目编辑">项目编辑</h2> <h3 id="创建项目目录">创建项目目录</h3> <div class="language- extra-class"><pre class="language-text"><code>&gt; mkdir vuepressDemo
+&gt; cd vuepressDemo
+</code></pre></div><h3 id="初始化项目">初始化项目</h3> <div class="language- extra-class"><pre class="language-text"><code>&gt; yarn init -y 
+</code></pre></div><p>或者</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; npm init -y
+</code></pre></div><h3 id="新建docs文件夹">新建docs文件夹</h3> <p>docs文件夹作为项目文档根目录，主要放置Markdown类型的文章和.vuepress文件夹。</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; mkdir docs
+</code></pre></div><h3 id="设置package-json">设置package.json</h3> <p>VuePress中有两个命令:</p> <ul><li><code>vuepress dev docs</code>, 命令运行本地服务，通过访问<code>http://localhost:8080</code>即可预览网站</li> <li><code>vuepress build docs</code>, 命令用来生成静态文件，默认情况下，放置在docs/.vuepress/dist目录中，当然你也可以在docs/.vuepress/config.js中的dest字段来修改默认存放目录。</li></ul> <p>在这里将两个命令封装成脚本的方式，直接使用<code>npm run dev</code>和<code>npm run build</code>即可。</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vuepress dev docs&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vuepress build docs&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="创建-vuepress目录">创建.vuepress目录</h3> <p>在docs目录中，创建.vuepress目录，.vuepress目录主要用于存放VuePress相关的文件。</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; mkdir .vuepress
+</code></pre></div><h3 id="创建config-js">创建config.js</h3> <p>进入到<code>.vuepress</code>目录中，然后创建<code>config.js</code>，<code>config.js</code>是VuePress必要的配置文件，它导出一个<code>javascript</code>对象</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; touch config.js
+</code></pre></div><h3 id="创建public文件夹">创建public文件夹</h3> <p>进入到<code>.vuepress</code>目录中，然后创建<code>public</code>文件夹，此文件夹主要放静态资源文件，例如<code>favicons</code>和 <code>PWA</code>的图标。</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; mkdir public
+</code></pre></div><h3 id="项目目录结构">项目目录结构</h3> <p>此时，项目的结构可能如下:</p> <div class="language-text extra-class"><pre class="language-text"><code>vuepressDemo
+├─── docs
+│   ├── README.md
+│   └── .vuepress
+│       ├── public
+│       └── config.js
+└── package.json
+</code></pre></div><h3 id="网站信息">网站信息</h3> <p>以上只是简单了搭建了一下博客的开发环境，接下来是博客主要的基本配置config.js，也是必须要做的。
+<code>config.js</code>的配置可能如下:</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    title<span class="token punctuation">:</span> <span class="token string">'个人主页'</span><span class="token punctuation">,</span> 
+    description<span class="token punctuation">:</span> <span class="token string">'姜帅杰的博客'</span><span class="token punctuation">,</span>
+    head<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span><span class="token string">'link'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> rel<span class="token punctuation">:</span> <span class="token string">'icon'</span><span class="token punctuation">,</span> href<span class="token punctuation">:</span> <span class="token string">'/img/logo.ico'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token string">'link'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> rel<span class="token punctuation">:</span> <span class="token string">'manifest'</span><span class="token punctuation">,</span> href<span class="token punctuation">:</span> <span class="token string">'/manifest.json'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>title：网站标题</li> <li>description：网站描述</li> <li>head：额外的需要被注入到当前页面的HTML&quot;head&quot;中的标签，其中路径的&quot;/&quot;就是public资源目录。</li></ul> <p>具体配置详情请看文档：<a href="https://vuepress.vuejs.org/zh/config/" target="_blank" rel="noopener noreferrer">VuePress config配置<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h4 id="主题配置">主题配置</h4> <p>在<code>config.js</code>中添加主题相关的配置, 如下添加了:</p> <ul><li>顶部导航配置</li> <li>左侧导航栏配置</li> <li>更多配置信息可以查看 <a href="https://vuepress.vuejs.org/zh/config/" target="_blank" rel="noopener noreferrer">VuePress config配置<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul> <div class="language- extra-class"><pre class="language-text"><code>module.exports = {
+  title: 'Web Developer',  // 设置网站标题
+  description : 'Web developer',
+  base : '/coding/',
+  themeConfig : {
+    header: {
+      background: {
+        // url: '/assets/img/bg.jpg',
+        useGeo: true,
+      },
+      showTitle: true,
+    },
+
+    lastUpdated: true,
+
+    nav : [
+        { 
+          text: 'Web', 
+          link: '/css/',
+          items: [
+            {
+              text: 'CSS',
+              link: '/css/'
+            },
+            {
+              text: 'HTML',
+              link: '/html/'
+            },
+            {
+              text: 'JavaScript',
+              link: '/js/'
+            },
+            {
+              text: 'Vue',
+              link: '/vue/'
+            }
+          ]
+        },
+        { 
+          text: 'Tools', 
+          link: '/',
+          items: [
+            {
+              text: 'Git',
+              link: '/git/'
+            }
+          ]
+        },
+        {
+          text: 'Github',
+          link: 'https://github.com/hijameszhang/coding'
+        }
+    ],
+    sidebar: {
+      '/css/': [
+        {
+          title: 'CSS',
+          collapsable: true,
+          children: [
+            '',
+            'basis',
+            'layout'
+          ]
+        }
+      ],
+      '/html/': [
+        {
+          title: 'HTML',
+          collapsable: true,
+          children: [
+            '',
+            'demo'
+          ]
+        }
+      ],
+      '/js/': [
+        {
+          title: 'JavaScript',
+          collapsable: true,
+          children: [
+            '',
+            'ifElseRefactor'
+          ]
+        }
+      ],
+      '/vue/': [
+        {
+          title: 'Vue',
+          collapsable: true,
+          children: [
+            '',
+            'vuepressToGithub'
+          ]
+        }
+      ],
+      '/git/': [
+        {
+          title: 'Git',
+          collapsable: true,
+          children: [
+            '',
+            'github'
+          ]
+        }
+      ]
+    },
+    sidebarDepth : 6
+  }
+}
+</code></pre></div><ul><li>nav：导航栏配置，此配置主要用于配置导航栏的链接，例如以上主页的link为&quot;/&quot;，默认是根目录下的<code>README.md</code>。&quot;/js/&quot;链接到根目录<code>docs</code>下的<code>js</code>文件夹下的<code>README.md</code>文件。</li> <li>sidebar：侧边栏配置，你可以省略.md拓展名，同时以/结尾的路径将会被视为 <code>/README.md</code>。'/js/'、'/css/'和'/html/'是通过路由的方式将每个页面的标题抽取出来显示。&quot;/js/&quot;是指根目录下<code>js</code>文件夹中的路由，每个路由链接都要有<code>README.md</code>。所以目录结构如下：</li></ul> <div class="language- extra-class"><pre class="language-text"><code>├─── docs
+├── README.md
+└── js
+│   └── README.md
+└── html
+|   └── README.md
+|   └── demo.md
+└── css
+   └── README.md
+</code></pre></div><ul><li>sidebarDepth：嵌套的标题链接深度，默认的深度为1，这里把它改成了 6.</li> <li>lastUpdated：最后更新时间。</li></ul> <h3 id="pwa配置">PWA配置</h3> <p>VuePress默认支持PWA配置的，需要在基本配置中开启serviceWorker。</p> <div class="language- extra-class"><pre class="language-text"><code>module.exports = {
+     serviceWorker: true,
+}
+</code></pre></div><p>然后再添加<code>icons</code>和<code>Manifest</code>配置，在<code>public</code>中添加<code>manifest.json</code>配置，和图标。如果不知道PWA的可以到<a href="https://developer.mozilla.org/en-US/docs/Web/Manifest" target="_blank" rel="noopener noreferrer">PWA配置<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>查看相关资料。</p> <h3 id="自定义页面">自定义页面</h3> <p>默认的主题提供了一个首页（Homepage）的布局(用于这个网站的主页)。想要使用它，需要在你的根级 <code>README.md</code>的<code>home: true</code>，然后添加数据。</p> <div class="language- extra-class"><pre class="language-text"><code>---
+home: true
+heroImage: /hero.png
+actionText: 快速上手 →
+actionLink: /zh/guide/
+features:
+- title: 简洁至上
+  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
+- title: Vue驱动
+  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
+- title: 高性能
+  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+footer: MIT Licensed | Copyright © 2018-present Evan You
+---
+</code></pre></div><p>效果如下：
+<img src="/coding/images/20190619205213.png" alt="image.png"></p> <p>如果你想自定义首页或者其他页面，可以在页面的md文件中添加页面Vue文件。Vue文件放置在<code>docs/.vuepress/components</code>目录中。</p> <div class="language- extra-class"><pre class="language-text"><code>---
+layout: HomeLayout
+---
+</code></pre></div><div class="tip custom-block"><p>VuePress中所有的组件都会放在<code>.vuepress/components</code>目录下, 并以全局的方式注入.</p> <p>详细资料可查看<a href="https://vuepress.vuejs.org/zh/guide/using-vue.html" target="_blank" rel="noopener noreferrer">VuePress在Markdown中使用Vue<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <h2 id="部署上线">部署上线</h2> <p>由于构建的时候生成静态页面，所以将dist文件夹中的内容可以部署在gitHub的pages中。如果使用git上传到github上，操作比较繁琐，这里使用脚本的方式自动部署到github上。</p> <h3 id="创建一个deploy-bat">创建一个deploy.bat</h3> <p>在vuepressDemo下创建deploy.sh。</p> <div class="language- extra-class"><pre class="language-text"><code>&gt; touch deploy.bat
+</code></pre></div><p>编写脚本</p> <div class="language- extra-class"><pre class="language-text"><code>cd docs/.vuepress/dist
+git init
+git add -A
+git commit -m 'deploy'
+// 强制推送代码到我在github上注册的一个名为hijameszhang的组织下的coding仓库中
+git push -f git@github.com:hijameszhang/coding.git master
+</code></pre></div><h3 id="设置package-json-2">设置package.json</h3> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;scripts&quot;: {
+        &quot;deploy&quot;: &quot;npm run build &amp;&amp; deploy.bat&quot;
+      },
+}
+</code></pre></div><p>或者:</p> <div class="language- extra-class"><pre class="language-text"><code></code></pre></div><p>{
+&quot;scripts&quot;: {
+&quot;deploy&quot;: &quot;yarn run build &amp;&amp; deploy.bat&quot;
+},
+}</p> <div class="language- extra-class"><pre class="language-text"><code></code></pre></div><p>运行<code>npm run deploy</code>或<code>yarn run deploy</code> 即可自动构建部署到github上。</p> <div class="tip custom-block"><p>详细资料可查阅<a href="https://vuepress.vuejs.org/zh/guide/deploy.html" target="_blank" rel="noopener noreferrer">VuePress部署<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <h3 id="github-pages-设置">Github Pages 设置</h3> <p><img src="/coding/images/github_settings.png" alt="image.png"></p> <p><img src="/coding/images/githubPages.png" alt="image.png"></p> <h4 id="小技巧">小技巧</h4> <p>因为GitHub Pages只有3个选项:</p> <ul><li>master branch</li> <li>master branch/docs folder</li> <li>None(Disable Github Pages)</li></ul> <p>为了能让站点正常发布, 我新建了一个<code>docs</code>分支, 因此工程当中有两个分支:</p> <ul><li>docs, 用于存储源代码</li> <li>master, 用于存储<code>npm run build</code>后的代码, 便于发布到Github的静态站点中.</li></ul> <p>因此, 在deploy.bat中可以看到:</p> <div class="language- extra-class"><pre class="language-text"><code>// 强制推送代码到我在github上注册的一个名为hijameszhang的组织下的coding仓库中
+git push -f git@github.com:hijameszhang/coding.git master
+</code></pre></div><p>为了方便查看源代码, 还需要设置一下默认的分支:
+<img src="/coding/images/default_branch.png" alt="image.png"></p> <h2 id="遇到的问题">遇到的问题</h2> <p>在利用vuepress构建静态站点时, 发现提交代码到github时会出错:</p> <div class="language- extra-class"><pre class="language-text"><code>E:\github\coding&gt;git push --set-upstream origin master
+ERROR: Permission to hijameszhang/coding.git denied to jameszhang2020.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</code></pre></div><p>原因是我本地电脑存储了两个或以上的github ssh key.
+解决办法请参见我的另一篇文章: <a href="/coding/git/github.html">git使用小技巧--多个github帐号-推送出错</a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">6/19/2019, 9:34:12 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/coding/vue/3-vue-router-skills.html" class="prev">
+          vue-router 开发技巧
+        </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/coding/assets/js/app.bda66ca1.js" defer></script><script src="/coding/assets/js/2.5301b3be.js" defer></script><script src="/coding/assets/js/63.12b12c53.js" defer></script>
+  </body>
+</html>
